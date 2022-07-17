@@ -39,12 +39,56 @@ packer.init({
 })
 
 return require('packer').startup(function()
-    use {
-      'nvim-telescope/telescope.nvim',
-      requires = { {'nvim-lua/plenary.nvim'} }
-    }
+    use 'neovim/nvim-lspconfig'
+    use 'williamboman/nvim-lsp-installer'
 
-    use {
-        'morhetz/gruvbox'
-    }
+    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+
+    -- Comments
+    use "numToStr/Comment.nvim" -- Easily comment stuff
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+    -- Color Schemes
+    use 'morhetz/gruvbox'
+
+  -- Cmp Plugins
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp"
+
+    -- Git
+    use "lewis6991/gitsigns.nvim"
+
+    -- Nvim Tree
+    use 'kyazdani42/nvim-web-devicons'
+    use 'kyazdani42/nvim-tree.lua'
+
+  -- Snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
+  use "tpope/vim-surround"
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
+
+    -- Telescope
+  use "nvim-telescope/telescope.nvim"
+  use 'nvim-telescope/telescope-media-files.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-lua/popup.nvim'
+
+    -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+  use "p00f/nvim-ts-rainbow"
+  use "nvim-treesitter/playground"
+
+    if PACKER_BOOTSTRAP then
+		require("packer").sync()
+	end
 end)

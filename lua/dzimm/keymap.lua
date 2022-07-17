@@ -10,6 +10,14 @@ local keymap = vim.api.nvim_set_keymap
 --   term_mode = "t"
 --   command_mode = "c"
 
+keymap("n", "<leader>w", ":w", opts)
+keymap("", "<Space>", "<Nop>", opts)
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+keymap("n", "<leader>w", ":w<CR>", opts)
+
 keymap("i", "kj", "<Esc>", opts)
 keymap("i", "jk", "<Esc>", opts)
 
@@ -29,8 +37,16 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<M-j>", "mz:m+<cr>`z", { silent = true })
 keymap("n", "<M-k>", "mz:m-2<cr>`z", { silent = true })
 
-keymap("n", "<leader>w", ":w", opts)
-keymap("", "<Space>", "<Nop>", opts)
+-- Visual Block --
+-- Move text up and down
+keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+
+-- Nvimtree
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)

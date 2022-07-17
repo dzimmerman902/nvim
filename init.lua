@@ -1,3 +1,13 @@
 require "dzimm.keymap"
 require "dzimm.options"
 require "dzimm.plugins"
+require "dzimm.colorscheme"
+require "dzimm.cmp"
+require "dzimm.lsp"
+require "dzimm.telescope"
+require "dzimm.treesitter"
+require "dzimm.autopairs"
+require "dzimm.comment"
+require "dzimm.gitsigns"
+require "dzimm.nvim-tree"
+
