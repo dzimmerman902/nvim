@@ -1,4 +1,5 @@
 local options = {
+    background=dark,
     backup = false,
     cmdheight = 2,
     completeopt = { "menuone", "noinsert", "noselect" },
@@ -20,6 +21,7 @@ local options = {
     softtabstop = 4,
     splitbelow = true,
     splitright = true,
+    syntax = 'enable',
     tabstop = 4,
     termguicolors = true,
     undofile = true,

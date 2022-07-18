@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -118,6 +123,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/morhetz/gruvbox"
+  },
+  ["neodark.vim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/neodark.vim",
+    url = "https://github.com/KeitaNakamura/neodark.vim"
+  },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -164,6 +179,11 @@ _G.packer_plugins = {
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["packer.nvim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
+  },
   playground = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/playground",
@@ -189,6 +209,11 @@ _G.packer_plugins = {
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
+  },
   ["vim-airline"] = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/vim-airline",
@@ -198,6 +223,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/vim-airline-themes",
     url = "https://github.com/vim-airline/vim-airline-themes"
+  },
+  ["vim-bbye"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/vim-bbye",
+    url = "https://github.com/moll/vim-bbye"
   },
   ["vim-surround"] = {
     loaded = true,

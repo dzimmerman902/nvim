@@ -10,4 +10,6 @@ require "dzimm.autopairs"
 require "dzimm.comment"
 require "dzimm.gitsigns"
 require "dzimm.nvim-tree"
+require "dzimm.bufferline"
+require "dzimm.toggleterm"
 
