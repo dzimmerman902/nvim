@@ -41,6 +41,11 @@ packer.init({
 return packer.startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    -- Airline
+    use 'vim-airline/vim-airline'
+    use 'vim-airline/vim-airline-themes'
+
+    -- Auto Pairs
     use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
 
     -- Buffline
@@ -75,13 +80,15 @@ return packer.startup(function(use)
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
 
+    -- Replace With Register
+    use 'vim-scripts/ReplaceWithRegister'
+
     -- Snippets
     use "L3MON4D3/LuaSnip" --snippet engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
+    -- Surround
     use "tpope/vim-surround"
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"

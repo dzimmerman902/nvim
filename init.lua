@@ -12,4 +12,5 @@ require "dzimm.gitsigns"
 require "dzimm.nvim-tree"
 require "dzimm.bufferline"
 require "dzimm.toggleterm"
+require "dzimm.replacewithregister"
 
