@@ -68,6 +68,10 @@ return packer.startup(function(use)
 	-- Color Schemes
 	use("morhetz/gruvbox")
 	use("KeitaNakamura/neodark.vim")
+	use("arcticicestudio/nord-vim")
+	use("EdenEast/nightfox.nvim")
+	use("joshdick/onedark.vim")
+	use("mhartington/oceanic-next")
 
 	-- Cmp Plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -76,6 +80,9 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
+
+    -- Dadbod
+    use('tpope/vim-dadbod')
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")

@@ -140,6 +140,16 @@ _G.packer_plugins = {
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/neodark.vim",
     url = "https://github.com/KeitaNakamura/neodark.vim"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
+  ["nord-vim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/nord-vim",
+    url = "https://github.com/arcticicestudio/nord-vim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -190,6 +200,16 @@ _G.packer_plugins = {
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["oceanic-next"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/oceanic-next",
+    url = "https://github.com/mhartington/oceanic-next"
+  },
+  ["onedark.vim"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/onedark.vim",
+    url = "https://github.com/joshdick/onedark.vim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -239,6 +259,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
+  },
+  ["vim-dadbod"] = {
+    loaded = true,
+    path = "/home/dzimm/.local/share/nvim/site/pack/packer/start/vim-dadbod",
+    url = "https://github.com/tpope/vim-dadbod"
   },
   ["vim-surround"] = {
     loaded = true,

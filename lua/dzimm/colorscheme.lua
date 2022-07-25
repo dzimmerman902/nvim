@@ -1,1 +1,2 @@
-vim.cmd "colorscheme neodark"
+-- vim.cmd "colorscheme onedark"
+vim.cmd "colorscheme OceanicNext"

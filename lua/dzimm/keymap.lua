@@ -19,7 +19,7 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>w", ":w<CR>", opts)
 
 keymap("i", "kj", "<Esc>", opts)
-keymap("i", "jk", "<Esc>", opts)
+-- keymap("i", "jk", "<Esc>", opts)
 
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -54,3 +54,6 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+
+-- Buffline
+keymap("n", "<C-w>", ":bd<cr>", opts)
