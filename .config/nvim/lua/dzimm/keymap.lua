@@ -19,7 +19,7 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>w", ":w<CR>", opts)
 
 keymap("i", "kj", "<Esc>", opts)
--- keymap("i", "jk", "<Esc>", opts)
+keymap("i", "jk", "<Esc>", opts)
 
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -29,8 +29,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+keymap("n", "<C-Up>", ":resize +2<CR>", opts)
+keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
@@ -43,6 +43,12 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "p", '"_dP', opts)
+
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
 
 -- Null LS
 -- Format
@@ -53,7 +59,12 @@ keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- Nvimtree
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>ef", ":NvimTreeFocus<cr>", opts)
 
 -- Buffline
-keymap("n", "<C-w>", ":bd<cr>", opts)
+keymap("n", "<C-w>", ":BufferLinePickClose<cr>", opts)
+
+-- Replace with Registers
+keymap("n", "<leader>r", "<Plug>ReplaceWithRegisterOperator", { noremap = true, silent = true })
+keymap("n", "<leader>rr", "<Plug>ReplaceWithRegisterLine", { noremap = true, silent = true })

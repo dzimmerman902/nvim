@@ -6,6 +6,7 @@ local options = {
 	cmdheight = 2,
 	completeopt = { "menuone", "noinsert", "noselect" },
 	cursorline = true,
+    encoding = "utf-8",
 	expandtab = true,
 	exrc = true,
 	hlsearch = false,

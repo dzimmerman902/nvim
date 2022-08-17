@@ -40,7 +40,7 @@ packer.init({
 })
 
 return packer.startup(function(use)
-    -- Packer
+	-- Packer
 	use("wbthomason/packer.nvim")
 
 	-- Airline
@@ -60,7 +60,7 @@ return packer.startup(function(use)
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 
 	-- Buffline
-	use("akinsho/bufferline.nvim")
+	use({ "akinsho/bufferline.nvim", tag = "v2.*", require = "kyazdani42/nvim-web-devicons" })
 	use("moll/vim-bbye")
 
 	-- Comments
@@ -83,12 +83,16 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-nvim-lua")
 
 	-- Dadbod
 	use("tpope/vim-dadbod")
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
+
+    -- Illuminate
+    use("RRethy/vim-illuminate")   
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
@@ -125,6 +129,7 @@ return packer.startup(function(use)
 	})
 	-- use("p00f/nvim-ts-rainbow")
 	use("nvim-treesitter/playground")
+	use("windwp/nvim-ts-autotag")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
