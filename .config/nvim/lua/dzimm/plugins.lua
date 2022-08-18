@@ -88,11 +88,17 @@ return packer.startup(function(use)
 	-- Dadbod
 	use("tpope/vim-dadbod")
 
+	-- DAP
+	use("mfussenegger/nvim-dap")
+	use("theHamsta/nvim-dap-virtual-text")
+	use("rcarriga/nvim-dap-ui")
+	use("nvim-telescope/telescope-dap.nvim")
+
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 
-    -- Illuminate
-    use("RRethy/vim-illuminate")   
+	-- Illuminate
+	use("RRethy/vim-illuminate")
 
 	-- LSP
 	use("neovim/nvim-lspconfig")

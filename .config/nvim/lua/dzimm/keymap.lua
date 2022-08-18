@@ -55,8 +55,8 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>p", ":lua vim.lsp.buf.formatting_sync()<cr>", opts)
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>f", ":Telescope find_files<cr>", opts)
+keymap("n", "<c-t>", ":Telescope live_grep<cr>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)
@@ -68,3 +68,11 @@ keymap("n", "<C-w>", ":BufferLinePickClose<cr>", opts)
 -- Replace with Registers
 keymap("n", "<leader>r", "<Plug>ReplaceWithRegisterOperator", { noremap = true, silent = true })
 keymap("n", "<leader>rr", "<Plug>ReplaceWithRegisterLine", { noremap = true, silent = true })
+
+-- DAP
+keymap("n", "<F5>", ":DapContinue<CR>", opts)
+keymap("n", "<leader>F5", ":DapTerminate<CR>", opts)
+keymap("n", "<F9>", ":DapToggleBreakpoint<CR>", opts)
+keymap("n", "<F11>", ":DapStepInto<CR>", opts)
+keymap("n", "<F10>", ":DapStepOver<CR>", opts)
+keymap("n", "<leader>F11", ":DapStepOut<CR>", opts)
