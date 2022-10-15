@@ -1,143 +1,141 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing packer close and reopen Neovim...")
-	vim.cmd([[packadd packer.nvim]])
+    PACKER_BOOTSTRAP = fn.system {
+        'git',
+        'clone',
+        '--depth',
+        '1',
+        'https://github.com/wbthomason/packer.nvim',
+        install_path,
+    }
+    print 'Installing packer close and reopen Neovim...'
+    vim.cmd [[packadd packer.nvim]]
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
+vim.cmd [[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]])
+]]
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
+local status_ok, packer = pcall(require, 'packer')
 if not status_ok then
-	return
+    return
 end
 
 -- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
-})
+packer.init {
+    display = {
+        open_fn = function()
+            return require('packer.util').float { border = 'rounded' }
+        end,
+    },
+}
 
 return packer.startup(function(use)
-	-- Packer
-	use("wbthomason/packer.nvim")
+    -- Packer
+    use 'wbthomason/packer.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'kyazdani42/nvim-web-devicons'
+    --
+    -- Airline
+    use("vim-airline/vim-airline")
+    use("vim-airline/vim-airline-themes")
 
-	-- Airline
-	use("vim-airline/vim-airline")
-	use("vim-airline/vim-airline-themes")
+    -- Alpha
+    -- use({
+    -- 	"goolord/alpha-nvim",
+    -- 	requires = { "kyazdani42/nvim-web-devicons" },
+    -- 	config = function()
+    -- 		require("alpha").setup(require("alpha.themes.startify").config)
+    -- 	end,
+    -- })
 
-	-- Alpha
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("alpha").setup(require("alpha.themes.startify").config)
-		end,
-	})
+    -- Auto Pairs
+    use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
 
-	-- Auto Pairs
-	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
+    -- BarBar
+    use 'romgrk/barbar.nvim'
+    --
+    -- Comments
+    use("numToStr/Comment.nvim") -- Easily comment stuff
+    use("JoosepAlviste/nvim-ts-context-commentstring")
 
-	-- Buffline
-	use({ "akinsho/bufferline.nvim", tag = "v2.*", require = "kyazdani42/nvim-web-devicons" })
-	use("moll/vim-bbye")
+    -- Color Schemes
+    use { 'catppuccin/nvim', as = 'catppuccin' }
 
-	-- Comments
-	use("numToStr/Comment.nvim") -- Easily comment stuff
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+    -- Cmp Plugins
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer' -- The completion plugin
+    use 'hrsh7th/cmp-path' -- The completion plugin
+    use 'hrsh7th/cmp-cmdline' -- The completion plugin
+    use 'hrsh7th/nvim-cmp' -- The completion plugin
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
 
-	-- Color Schemes
-	use({ "catppuccin/nvim", as = "catppuccin" })
-	-- use("morhetz/gruvbox")
-	-- use("KeitaNakamura/neodark.vim")
-	-- use("arcticicestudio/nord-vim")
-	-- use("EdenEast/nightfox.nvim")
-	-- use("joshdick/onedark.vim")
-	-- use("mhartington/oceanic-next")
+    -- Dadbod
+    -- use("tpope/vim-dadbod")
 
-	-- Cmp Plugins
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- buffer completions
-	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("saadparwaiz1/cmp_luasnip") -- snippet completions
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lua")
+    -- DAP
+    use("mfussenegger/nvim-dap")
+    -- use("theHamsta/nvim-dap-virtual-text")
+    use("rcarriga/nvim-dap-ui")
+    -- use("nvim-telescope/telescope-dap.nvim")
 
-	-- Dadbod
-	use("tpope/vim-dadbod")
+    -- Git
+    -- use("lewis6991/gitsigns.nvim")
+    --    use("f-person/git-blame.nvim")
 
-	-- DAP
-	use("mfussenegger/nvim-dap")
-	use("theHamsta/nvim-dap-virtual-text")
-	use("rcarriga/nvim-dap-ui")
-	use("nvim-telescope/telescope-dap.nvim")
+    -- Illuminate
+    use 'RRethy/vim-illuminate'
 
-	-- Git
-	use("lewis6991/gitsigns.nvim")
+    -- Language Client
+    
+    -- LSP
+    use 'neovim/nvim-lspconfig'
+    use 'jose-elias-alvarez/null-ls.nvim'
+    --
+    -- Mason
+    use { 'williamboman/mason.nvim' }
 
-	-- Illuminate
-	use("RRethy/vim-illuminate")
+    -- Nvim Tree
+    use("kyazdani42/nvim-tree.lua")
 
-	-- LSP
-	use("neovim/nvim-lspconfig")
-	use("williamboman/nvim-lsp-installer")
-	use("jose-elias-alvarez/null-ls.nvim")
+    -- Replace With Register
+    -- use("vim-scripts/ReplaceWithRegister")
 
-	-- Nvim Tree
-	use("kyazdani42/nvim-web-devicons")
-	use("kyazdani42/nvim-tree.lua")
+    -- Snippets
+    -- use("L3MON4D3/LuaSnip") --snippet engine
+    -- use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-	-- Replace With Register
-	use("vim-scripts/ReplaceWithRegister")
+    -- Surround
+    use("tpope/vim-surround")
 
-	-- Snippets
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+    -- Telescope
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
+    -- use("nvim-telescope/telescope-media-files.nvim")
+    -- use("nvim-lua/popup.nvim")
 
-	-- Surround
-	use("tpope/vim-surround")
+    -- Toggleterm
+    -- use("akinsho/toggleterm.nvim")
 
-	-- Telescope
-	use("nvim-telescope/telescope.nvim")
-	use("nvim-telescope/telescope-media-files.nvim")
-	use("nvim-lua/plenary.nvim")
-	use("nvim-lua/popup.nvim")
+    -- Treesitter
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+    }
+    -- use("p00f/nvim-ts-rainbow")
+    -- use("nvim-treesitter/playground")
+    -- use("windwp/nvim-ts-autotag")
 
-	-- Toggleterm
-	use("akinsho/toggleterm.nvim")
-
-	-- Treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
-	-- use("p00f/nvim-ts-rainbow")
-	use("nvim-treesitter/playground")
-	use("windwp/nvim-ts-autotag")
-
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
+    if PACKER_BOOTSTRAP then
+        require('packer').sync()
+    end
 end)

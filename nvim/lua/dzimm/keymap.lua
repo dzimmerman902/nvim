@@ -10,69 +10,83 @@ local keymap = vim.api.nvim_set_keymap
 --   term_mode = "t"
 --   command_mode = "c"
 
-keymap("n", "<leader>w", ":w", opts)
-keymap("", "<Space>", "<Nop>", opts)
+keymap('n', '<leader>w', ':w', opts)
+keymap('', '<Space>', '<Nop>', opts)
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
-keymap("n", "<leader>w", ":w<CR>", opts)
+-- Write Buffer
+keymap('n', '<leader>w', ':w<CR>', opts)
 
-keymap("i", "kj", "<Esc>", opts)
-keymap("i", "jk", "<Esc>", opts)
+-- Exit Insert Mode
+keymap('i', 'kj', '<Esc>', opts)
+keymap('i', 'jk', '<Esc>', opts)
 
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- Switch Between Windows
+keymap('n', '<C-h>', '<C-w>h', opts)
+keymap('n', '<C-j>', '<C-w>j', opts)
+keymap('n', '<C-k>', '<C-w>k', opts)
+keymap('n', '<C-l>', '<C-w>l', opts)
 
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- Switch Between Buffers
 
-keymap("n", "<C-Up>", ":resize +2<CR>", opts)
-keymap("n", "<C-Down>", ":resize -2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap('n', '<C-Up>', ':resize -4<CR>', opts)
+keymap('n', '<C-Down>', ':resize +4<CR>', opts)
+keymap('n', '<C-Left>', ':vertical resize +4<CR>', opts)
+keymap('n', '<C-Right>', ':vertical resize -4<CR>', opts)
 
-keymap("n", "<M-j>", "mz:m+<cr>`z", { silent = true })
-keymap("n", "<M-k>", "mz:m-2<cr>`z", { silent = true })
+-- Move Line Up/Down
+keymap('n', '<M-j>', 'mz:m+<cr>`z', { silent = true })
+keymap('n', '<M-k>', 'mz:m-2<cr>`z', { silent = true })
 
--- Visual Block --
--- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
+-- Delete Buffers
+keymap('n', '<leader>bd', ':bd<cr>', opts)
 
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+-- ???
+keymap('v', 'p', '"_dP', opts)
+
+-- Better Indents
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
+
+-- Get from clipboar
+keymap('n', "<S-'><S-=>", '<LEADER>c', opts)
 
 -- Null LS
 -- Format
-keymap("n", "<leader>p", ":lua vim.lsp.buf.formatting_sync()<cr>", opts)
+keymap('n', '<leader>p', ':lua vim.lsp.buf.format({ async = true })<cr>', opts)
 
 -- Telescope
-keymap("n", "<leader>f", ":Telescope find_files<cr>", opts)
-keymap("n", "<c-t>", ":Telescope live_grep<cr>", opts)
+keymap('n', '<leader>ff', ':Telescope find_files hidden=true<cr>', opts)
+keymap('n', '<leader>fg', ':Telescope live_grep<cr>', opts)
+keymap('n', '<leader>fb', ':Telescope buffers<cr>', opts)
+keymap('n', '<leader>fh', ':Telescope help_tags<cr>', opts)
 
 -- Nvimtree
-keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)
-keymap("n", "<leader>ef", ":NvimTreeFocus<cr>", opts)
+keymap('n', '<leader>ee', ':NvimTreeToggle<cr>', opts)
+keymap('n', '<leader>ef', ':NvimTreeFocus<cr>', opts)
+keymap('n', '<leader>ec', ':NvimTreeCollapse<cr>', opts)
 
--- Buffline
-keymap("n", "<C-w>", ":BufferLinePickClose<cr>", opts)
+-- BarBar
+keymap('n', '<s-h>', ':BufferPrevious<cr>', opts)
+keymap('n', '<s-l>', ':BufferNext<cr>', opts)
+keymap('n', '<a-c>', ':BufferClose<cr>', opts)
 
 -- Replace with Registers
-keymap("n", "<leader>r", "<Plug>ReplaceWithRegisterOperator", { noremap = true, silent = true })
-keymap("n", "<leader>rr", "<Plug>ReplaceWithRegisterLine", { noremap = true, silent = true })
+-- keymap("n", "<leader>r", "<Plug>ReplaceWithRegisterOperator", opts)
+-- keymap("n", "<leader>rr", "<Plug>ReplaceWithRegisterLine", opts)
 
 -- DAP
-keymap("n", "<F5>", ":DapContinue<CR>", opts)
-keymap("n", "<leader>F5", ":DapTerminate<CR>", opts)
-keymap("n", "<F9>", ":DapToggleBreakpoint<CR>", opts)
-keymap("n", "<F11>", ":DapStepInto<CR>", opts)
-keymap("n", "<F10>", ":DapStepOver<CR>", opts)
-keymap("n", "<leader>F11", ":DapStepOut<CR>", opts)
+keymap('n', '<leader>dc', ':DapContinue<CR>', opts)
+keymap('n', '<leader>dt', ':DapTerminate<CR>', opts)
+keymap('n', '<leader>db', ':DapToggleBreakpoint<CR>', opts)
+keymap('n', '<leader>db', ':DapToggleBreakpoint<CR>', opts)
+keymap('n', '<leader>dr', ":lua require'dap'.repl.open()<cr>", opts)
+keymap('n', '<leader>dl', ":lua require'dap'.run_last()<cr>", opts)
+keymap('n', '<leader>di', ':DapStepInto<CR>', opts)
+keymap('n', '<leader>do', ':DapStepOver<CR>', opts)
+keymap('n', '<leader>de', ':DapStepOut<CR>', opts)
+
+-- DAP UI
+keymap('n', '<leader>dui', ":lua require('dapui').toggle()<CR>", opts)

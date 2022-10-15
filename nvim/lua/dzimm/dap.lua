@@ -3,6 +3,9 @@ if not status_ok then
 	return
 end
 
+local api = vim.api
+local keymap_restore = {}
+
 dap.adapters.node2 = {
 	type = "executable",
 	command = "node",
@@ -11,7 +14,17 @@ dap.adapters.node2 = {
 
 dap.configurations.javascript = {
 	{
-		name = "Launch",
+		name = "Launch Test",
+		type = "node2",
+		request = "launch",
+		program = "${workspaceFolder}\\__tests__\\index.js",
+		cwd = vim.fn.getcwd(),
+		sourceMaps = true,
+		protocol = "inspector",
+		console = "integratedTerminal",
+	},
+	{
+		name = "Launch File",
 		type = "node2",
 		request = "launch",
 		program = "${file}",

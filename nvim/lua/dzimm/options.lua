@@ -1,12 +1,13 @@
 vim.cmd("autocmd! FileType html set")
 
 local options = {
+    autoread = true,
 	background = "dark",
 	backup = false,
 	cmdheight = 2,
 	completeopt = { "menuone", "noinsert", "noselect" },
 	cursorline = true,
-    encoding = "utf-8",
+	encoding = "utf-8",
 	expandtab = true,
 	exrc = true,
 	hlsearch = false,
@@ -38,3 +39,8 @@ vim.opt.shortmess:append("c")
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+
+-- vim.g.gitblame_enabled = 1
+-- vim.g.gitblame_message_template = "<author> • <summary>"
+-- vim.g.loaded = 1
+-- vim.g.loaded_netrwPlugin = 1
