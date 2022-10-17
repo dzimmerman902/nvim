@@ -4,10 +4,6 @@ if not status_ok then
 end
 
 nvim_tree.setup {
-    update_focused_file = {
-        enable = true,
-        update_cwd = true,
-    },
     renderer = {
         root_folder_modifier = ':t',
         icons = {
@@ -47,11 +43,28 @@ nvim_tree.setup {
         },
     },
     view = {
-        width = 30,
-        height = 30,
-        side = 'right',
+        side = "right",
+        float = {
+            enable = true,
+            quit_on_focus_loss = true,
+            open_win_config = {
+                relative = "editor",
+                border = "rounded",
+                width = 30,
+                height = 30,
+                row = 1,
+                col = 1,
+            },
+        },
     },
     filters = {
         dotfiles = false,
     },
 }
+
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+keymap('n', '<leader>ee', ':NvimTreeToggle<cr>', opts)
+keymap('n', '<leader>ef', ':NvimTreeFocus<cr>', opts)
+keymap('n', '<leader>ec', ':NvimTreeCollapse<cr>', opts)

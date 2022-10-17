@@ -49,15 +49,6 @@ return packer.startup(function(use)
     use("vim-airline/vim-airline")
     use("vim-airline/vim-airline-themes")
 
-    -- Alpha
-    -- use({
-    -- 	"goolord/alpha-nvim",
-    -- 	requires = { "kyazdani42/nvim-web-devicons" },
-    -- 	config = function()
-    -- 		require("alpha").setup(require("alpha.themes.startify").config)
-    -- 	end,
-    -- })
-
     -- Auto Pairs
     use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
 
@@ -69,7 +60,7 @@ return packer.startup(function(use)
     use("JoosepAlviste/nvim-ts-context-commentstring")
 
     -- Color Schemes
-    use { 'catppuccin/nvim', as = 'catppuccin' }
+    use 'marko-cerovac/material.nvim'
 
     -- Cmp Plugins
     use 'hrsh7th/cmp-nvim-lsp'
@@ -80,36 +71,31 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
 
-    -- Dadbod
-    -- use("tpope/vim-dadbod")
-
     -- DAP
     use("mfussenegger/nvim-dap")
-    -- use("theHamsta/nvim-dap-virtual-text")
     use("rcarriga/nvim-dap-ui")
-    -- use("nvim-telescope/telescope-dap.nvim")
+
+    -- fzf
+    use { 'ibhagwan/fzf-lua', branch = 'main' }
 
     -- Git
-    -- use("lewis6991/gitsigns.nvim")
-    --    use("f-person/git-blame.nvim")
+    use("lewis6991/gitsigns.nvim")
+    -- use("f-person/git-blame.nvim")
 
     -- Illuminate
     use 'RRethy/vim-illuminate'
 
     -- Language Client
-    
+
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'jose-elias-alvarez/null-ls.nvim'
-    --
-    -- Mason
-    use { 'williamboman/mason.nvim' }
 
     -- Nvim Tree
     use("kyazdani42/nvim-tree.lua")
 
     -- Replace With Register
-    -- use("vim-scripts/ReplaceWithRegister")
+    use("vim-scripts/ReplaceWithRegister")
 
     -- Snippets
     -- use("L3MON4D3/LuaSnip") --snippet engine
@@ -118,13 +104,9 @@ return packer.startup(function(use)
     -- Surround
     use("tpope/vim-surround")
 
-    -- Telescope
-    use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
-    -- use("nvim-telescope/telescope-media-files.nvim")
-    -- use("nvim-lua/popup.nvim")
 
     -- Toggleterm
-    -- use("akinsho/toggleterm.nvim")
+    use("akinsho/toggleterm.nvim")
 
     -- Treesitter
     use {
