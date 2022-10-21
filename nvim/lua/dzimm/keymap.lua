@@ -38,8 +38,8 @@ keymap('n', '<C-RIGHT>', ':vertical resize -4<CR>', opts)
 keymap('n', '<M-j>', 'mz:m+<cr>`z', { silent = true })
 keymap('n', '<M-k>', 'mz:m-2<cr>`z', { silent = true })
 
--- Quit Nvim
-keymap('n', '<LEADER>q', ':qa<CR>', opts)
+-- Clipboard Registry
+keymap('n', '<LEADER>c', '"+', opts)
 
 -- ???
 keymap('v', 'p', '"_dP', opts)
@@ -78,6 +78,3 @@ keymap('n', '<LEADER>de', ':DapStepOut<CR>', opts)
 -- DAP UI
 keymap('n', '<LEADER>dui', ":lua require('dapui').toggle()<CR>", opts)
 
--- FzfLua
-keymap('n', '<LEADER>ff', ':FzfLua files<CR>', opts)
-keymap('n', '<LEADER>fg', ':FzfLua grep<CR>', opts)

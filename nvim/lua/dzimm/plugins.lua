@@ -98,8 +98,8 @@ return packer.startup(function(use)
     use("vim-scripts/ReplaceWithRegister")
 
     -- Snippets
-    -- use("L3MON4D3/LuaSnip") --snippet engine
-    -- use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+    use("L3MON4D3/LuaSnip") --snippet engine
+    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
     -- Surround
     use("tpope/vim-surround")

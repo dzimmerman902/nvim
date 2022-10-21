@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 nvim_tree.setup {
+    create_in_closed_folder = true,
     renderer = {
         root_folder_modifier = ':t',
         icons = {

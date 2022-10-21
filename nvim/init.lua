@@ -7,11 +7,11 @@ require 'dzimm.lspconfig'
 require 'dzimm.null-ls'
 require 'dzimm.nvim-cmp'
 require 'dzimm.barbar'
-require("dzimm.comment")
-require("dzimm.autopairs")
-require("dzimm.fzf-lua")
-require("dzimm.nvim-tree")
-require("dzimm.toggleterm")
-require("dzimm.gitsigns")
--- require("dzimm.dap")
--- require("dzimm.dap-ui")
+require 'dzimm.comment'
+require 'dzimm.autopairs'
+require 'dzimm.fzf-lua'
+require 'dzimm.nvim-tree'
+require 'dzimm.toggleterm'
+require 'dzimm.gitsigns'
+require 'dzimm.dap'
+require 'dzimm.dap-ui'
