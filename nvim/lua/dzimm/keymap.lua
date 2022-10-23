@@ -31,8 +31,8 @@ keymap('n', '<C-l>', '<C-w>l', opts)
 -- Switch Between Buffers
 keymap('n', '<C-UP>', ':resize -4<CR>', opts)
 keymap('n', '<C-DOWN>', ':resize +4<CR>', opts)
-keymap('n', '<C-LEFT>', ':vertical resize +4<CR>', opts)
-keymap('n', '<C-RIGHT>', ':vertical resize -4<CR>', opts)
+keymap('n', '<C-RIGHT>', ':vertical resize +4<CR>', opts)
+keymap('n', '<C-LEFT>', ':vertical resize -4<CR>', opts)
 
 -- Move Line Up/Down
 keymap('n', '<M-j>', 'mz:m+<cr>`z', { silent = true })
@@ -61,20 +61,9 @@ keymap('n', '<S-l>', ':BufferNext<cr>', opts)
 keymap('n', '<A-c>', ':BufferClose<cr>', opts)
 
 -- Replace with Registers
-keymap("n", "<LEADER>r", "<Plug>ReplaceWithRegisterOperator", opts)
-keymap("n", "<LEADER>rr", "<Plug>ReplaceWithRegisterLine", opts)
+keymap('n', '<LEADER>r', '<Plug>ReplaceWithRegisterOperator', opts)
+keymap('n', '<LEADER>rr', '<Plug>ReplaceWithRegisterLine', opts)
 
 -- DAP
-keymap('n', '<LEADER>dc', ':DapContinue<CR>', opts)
-keymap('n', '<LEADER>dt', ':DapTerminate<CR>', opts)
-keymap('n', '<LEADER>db', ':DapToggleBreakpoint<CR>', opts)
-keymap('n', '<LEADER>db', ':DapToggleBreakpoint<CR>', opts)
-keymap('n', '<LEADER>dr', ":lua require'dap'.repl.open()<CR>", opts)
-keymap('n', '<LEADER>dl', ":lua require'dap'.run_last()<CR>", opts)
-keymap('n', '<LEADER>di', ':DapStepInto<CR>', opts)
-keymap('n', '<LEADER>do', ':DapStepOver<CR>', opts)
-keymap('n', '<LEADER>de', ':DapStepOut<CR>', opts)
-
 -- DAP UI
 keymap('n', '<LEADER>dui', ":lua require('dapui').toggle()<CR>", opts)
-

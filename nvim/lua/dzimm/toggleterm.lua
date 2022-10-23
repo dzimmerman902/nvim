@@ -62,24 +62,4 @@ function _LAZYGIT_TOGGLE()
     lazygit:toggle()
 end
 
-local ranger = Terminal:new {
-    cmd = 'ranger',
-    hidden = true,
-    start_in_insert = true,
-    direction = 'float',
-    float_opts = {
-        border = 'curved',
-        winblend = 0,
-        highlights = {
-            border = 'Normal',
-            background = 'Normal',
-        },
-    },
-}
-
-function _RANGER_TOGGLE()
-    ranger:toggle()
-end
-
 vim.api.nvim_set_keymap('n', '<LEADER>gg', '<CMD>lua _LAZYGIT_TOGGLE()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<LEADER>e', '<CMD>lua _RANGER_TOGGLE()<CR>', { noremap = true, silent = true })

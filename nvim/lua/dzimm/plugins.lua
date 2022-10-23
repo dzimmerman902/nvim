@@ -44,10 +44,10 @@ return packer.startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'
-    --
+
     -- Airline
-    use("vim-airline/vim-airline")
-    use("vim-airline/vim-airline-themes")
+    use 'vim-airline/vim-airline'
+    use 'vim-airline/vim-airline-themes'
 
     -- Auto Pairs
     use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
@@ -56,11 +56,11 @@ return packer.startup(function(use)
     use 'romgrk/barbar.nvim'
     --
     -- Comments
-    use("numToStr/Comment.nvim") -- Easily comment stuff
-    use("JoosepAlviste/nvim-ts-context-commentstring")
+    use 'numToStr/Comment.nvim' -- Easily comment stuff
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     -- Color Schemes
-    use 'marko-cerovac/material.nvim'
+    use 'rmehri01/onenord.nvim'
 
     -- Cmp Plugins
     use 'hrsh7th/cmp-nvim-lsp'
@@ -72,50 +72,53 @@ return packer.startup(function(use)
     use 'hrsh7th/vim-vsnip'
 
     -- DAP
-    use("mfussenegger/nvim-dap")
-    use("rcarriga/nvim-dap-ui")
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'mxsdev/nvim-dap-vscode-js'
+    use {
+        'microsoft/vscode-js-debug',
+        opt = true,
+        run = 'npm install --legacy-peer-deps && npm run compile',
+    }
 
     -- fzf
     use { 'ibhagwan/fzf-lua', branch = 'main' }
 
     -- Git
-    use("lewis6991/gitsigns.nvim")
-    -- use("f-person/git-blame.nvim")
+    use 'lewis6991/gitsigns.nvim'
+    use("f-person/git-blame.nvim")
 
     -- Illuminate
     use 'RRethy/vim-illuminate'
-
-    -- Language Client
 
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'jose-elias-alvarez/null-ls.nvim'
 
     -- Nvim Tree
-    use("kyazdani42/nvim-tree.lua")
+    use 'preservim/nerdtree'
 
     -- Replace With Register
-    use("vim-scripts/ReplaceWithRegister")
+    use 'vim-scripts/ReplaceWithRegister'
 
     -- Snippets
-    use("L3MON4D3/LuaSnip") --snippet engine
-    use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+    use 'L3MON4D3/LuaSnip' --snippet engine
+    use 'rafamadriz/friendly-snippets' -- a bunch of snippets to use
 
     -- Surround
-    use("tpope/vim-surround")
-
+    use 'tpope/vim-surround'
 
     -- Toggleterm
-    use("akinsho/toggleterm.nvim")
+    use 'akinsho/toggleterm.nvim'
 
     -- Treesitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
     }
-    -- use("p00f/nvim-ts-rainbow")
-    -- use("nvim-treesitter/playground")
-    -- use("windwp/nvim-ts-autotag")
+
+    use 'tiagofumo/vim-nerdtree-syntax-highlight'
+    use 'ryanoasis/vim-devicons'
 
     if PACKER_BOOTSTRAP then
         require('packer').sync()
