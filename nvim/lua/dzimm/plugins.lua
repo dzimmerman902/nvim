@@ -45,9 +45,11 @@ return packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'kyazdani42/nvim-web-devicons'
 
-    -- Airline
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
+    -- lualine
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    }
 
     -- Auto Pairs
     use 'windwp/nvim-autopairs' -- Autopairs, integrates with both cmp and treesitter
@@ -86,7 +88,7 @@ return packer.startup(function(use)
 
     -- Git
     use 'lewis6991/gitsigns.nvim'
-    use("f-person/git-blame.nvim")
+    use 'f-person/git-blame.nvim'
 
     -- Illuminate
     use 'RRethy/vim-illuminate'
@@ -119,6 +121,12 @@ return packer.startup(function(use)
 
     use 'tiagofumo/vim-nerdtree-syntax-highlight'
     use 'ryanoasis/vim-devicons'
+
+    -- Windows
+    use {
+        'anuvyklack/windows.nvim',
+        requires = 'anuvyklack/middleclass',
+    }
 
     if PACKER_BOOTSTRAP then
         require('packer').sync()

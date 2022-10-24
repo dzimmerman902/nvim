@@ -139,6 +139,16 @@ _G.packer_plugins = {
     path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  middleclass = {
+    loaded = true,
+    path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/middleclass",
+    url = "https://github.com/anuvyklack/middleclass"
+  },
   nerdtree = {
     loaded = true,
     path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/nerdtree",
@@ -214,16 +224,6 @@ _G.packer_plugins = {
     path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
-  ["vim-airline"] = {
-    loaded = true,
-    path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/vim-airline",
-    url = "https://github.com/vim-airline/vim-airline"
-  },
-  ["vim-airline-themes"] = {
-    loaded = true,
-    path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/vim-airline-themes",
-    url = "https://github.com/vim-airline/vim-airline-themes"
-  },
   ["vim-devicons"] = {
     loaded = true,
     path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/vim-devicons",
@@ -254,6 +254,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/opt/vscode-js-debug",
     url = "https://github.com/microsoft/vscode-js-debug"
+  },
+  ["windows.nvim"] = {
+    loaded = true,
+    path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/windows.nvim",
+    url = "https://github.com/anuvyklack/windows.nvim"
   }
 }
 
