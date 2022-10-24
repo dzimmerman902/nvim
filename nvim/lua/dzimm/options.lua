@@ -10,6 +10,7 @@ local options = {
     encoding = 'UTF-8',
     expandtab = true,
     exrc = true,
+    guifont='SauceCodePro Nerd Font 11',
     hlsearch = false,
     hidden = true,
     incsearch = true,

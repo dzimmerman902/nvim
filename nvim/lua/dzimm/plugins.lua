@@ -62,7 +62,8 @@ return packer.startup(function(use)
     use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     -- Color Schemes
-    use 'rmehri01/onenord.nvim'
+    -- use 'rmehri01/onenord.nvim'
+    use 'folke/tokyonight.nvim'
 
     -- Cmp Plugins
     use 'hrsh7th/cmp-nvim-lsp'
@@ -119,14 +120,14 @@ return packer.startup(function(use)
         run = ':TSUpdate',
     }
 
-    use 'tiagofumo/vim-nerdtree-syntax-highlight'
-    use 'ryanoasis/vim-devicons'
-
     -- Windows
     use {
         'anuvyklack/windows.nvim',
         requires = 'anuvyklack/middleclass',
     }
+
+    use 'ryanoasis/vim-devicons'
+    use 'tiagofumo/vim-nerdtree-syntax-highlight'
 
     if PACKER_BOOTSTRAP then
         require('packer').sync()
