@@ -50,3 +50,13 @@ lspconfig.pyright.setup {
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
+lspconfig.bashls.setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    settings = {
+        cmd_env = {
+            GLOB_PATTERN = '*@(.zsh|.sh|.inc|.bash|.command)',
+        },
+    },
+}
