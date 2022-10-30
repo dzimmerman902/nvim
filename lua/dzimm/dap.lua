@@ -20,6 +20,16 @@ for _, language in ipairs { 'typescript', 'javascript' } do
         {
             type = 'pwa-node',
             request = 'launch',
+            name = 'Launch test',
+            program = '__tests__/index.js',
+            cwd = '${workspaceFolder}',
+            sourceMaps = true,
+            console = 'integratedTerminal',
+            protocol = 'inspector',
+        },
+        {
+            type = 'pwa-node',
+            request = 'launch',
             name = 'Launch file',
             program = '${file}',
             cwd = '${workspaceFolder}',

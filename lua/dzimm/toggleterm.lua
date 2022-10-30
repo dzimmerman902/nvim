@@ -34,6 +34,8 @@ toggleterm.setup {
 
 function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }
+    vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
     vim.keymap.set('t', '<C-h>', [[<CMD>wincmd h<CR>]], opts)
     vim.keymap.set('t', '<C-j>', [[<CMD>wincmd j<CR>]], opts)
     vim.keymap.set('t', '<C-k>', [[<CMD>wincmd k<CR>]], opts)

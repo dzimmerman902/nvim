@@ -87,6 +87,9 @@ return packer.startup(function(use)
     -- fzf
     use { 'ibhagwan/fzf-lua', branch = 'main' }
 
+    -- Glow
+    use { 'ellisonleao/glow.nvim' }
+
     -- Git
     use 'lewis6991/gitsigns.nvim'
     use 'f-person/git-blame.nvim'
