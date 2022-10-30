@@ -84,6 +84,9 @@ return packer.startup(function(use)
         run = 'npm install --legacy-peer-deps && npm run compile',
     }
 
+    -- Emmet
+    use 'mattn/emmet-vim'
+
     -- fzf
     use { 'ibhagwan/fzf-lua', branch = 'main' }
 

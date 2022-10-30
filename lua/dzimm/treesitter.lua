@@ -4,6 +4,9 @@ if not status_ok then
 end
 
 treesitter.setup {
+    autotag = {
+        enable = true,
+    },
     ensure_installed = { 'typescript', 'javascript' },
     highlight = {
         enable = true,

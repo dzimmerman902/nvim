@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+  ["emmet-vim"] = {
+    loaded = true,
+    path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/dzimmerman/.local/share/nvim/site/pack/packer/start/friendly-snippets",
