@@ -35,12 +35,16 @@ local options = {
     wrap = false,
 }
 
-vim.opt.shortmess:append 'c'
-
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
+vim.opt.shortmess:append 'c'
+
+vim.b.ale_fixers = { 'eslint' }
+
+vim.g.ale_javascript_eslint_executable = 'eslint_d'
+vim.g.ale_javascript_eslint_use_global = 1
 vim.g.gitblame_enabled = 1
 vim.g.gitblame_message_template = '<author> • <summary>'
 vim.g.loaded = 1
