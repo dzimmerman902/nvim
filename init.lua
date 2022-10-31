@@ -1,7 +1,6 @@
 require 'dzimm.plugins'
 require 'dzimm.options'
 require 'dzimm.keymap'
-
 require 'dzimm.autopairs'
 require 'dzimm.barbar'
 require 'dzimm.colorscheme'
@@ -18,3 +17,32 @@ require 'dzimm.nvim-cmp'
 require 'dzimm.toggleterm'
 require 'dzimm.treesitter'
 require 'dzimm.windows'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

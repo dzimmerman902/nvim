@@ -62,4 +62,13 @@ lspconfig.bashls.setup {
     },
 }
 
-lspconfig.eslint.setup{}
+lspconfig.eslint.setup {}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.cssls.setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities
+}
