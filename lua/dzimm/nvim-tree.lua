@@ -3,6 +3,13 @@ if not status_ok then
     return
 end
 
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+keymap('n', '<LEADER>ee', ':NvimTreeToggle<CR>', opts)
+keymap('n', '<LEADER>ef', ':NvimTreeFocus<CR>', opts)
+keymap('n', '<LEADER>ec', ':NvimTreeCollapse<CR>', opts)
+
 nvim_tree.setup {
     create_in_closed_folder = true,
     renderer = {
@@ -44,28 +51,12 @@ nvim_tree.setup {
         },
     },
     view = {
-        side = "right",
-        float = {
-            enable = true,
-            quit_on_focus_loss = true,
-            open_win_config = {
-                relative = "editor",
-                border = "rounded",
-                width = 30,
-                height = 30,
-                row = 1,
-                col = 1,
-            },
-        },
+        side = 'left',
     },
     filters = {
         dotfiles = false,
+        custom = {
+            '^.git$',
+        },
     },
 }
-
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
-
-keymap('n', '<leader>ee', ':NvimTreeToggle<cr>', opts)
-keymap('n', '<leader>ef', ':NvimTreeFocus<cr>', opts)
-keymap('n', '<leader>ec', ':NvimTreeCollapse<cr>', opts)

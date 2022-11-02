@@ -9,7 +9,6 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
-keymap('n', '<LEADER>w', ':w', opts)
 keymap('', '<SPACE>', '<Nop>', opts)
 
 vim.g.mapleader = ' '
@@ -31,12 +30,12 @@ keymap('n', '<C-l>', '<C-w>l', opts)
 -- Switch Between Buffers
 keymap('n', '<C-UP>', ':resize -4<CR>', opts)
 keymap('n', '<C-DOWN>', ':resize +4<CR>', opts)
-keymap('n', '<C-RIGHT>', ':vertical resize +4<CR>', opts)
-keymap('n', '<C-LEFT>', ':vertical resize -4<CR>', opts)
+keymap('n', '<C-LEFT>', ':vertical resize +4<CR>', opts)
+keymap('n', '<C-RIGHT>', ':vertical resize -4<CR>', opts)
 
 -- Move Line Up/Down
-keymap('n', '<M-j>', 'mz:m+<cr>`z', { silent = true })
-keymap('n', '<M-k>', 'mz:m-2<cr>`z', { silent = true })
+keymap('n', '<M-j>', 'mz:m+<CR>`z', { silent = true })
+keymap('n', '<M-k>', 'mz:m-2<CR>`z', { silent = true })
 
 -- Clipboard Registry
 keymap('n', '<LEADER>c', '"+', opts)
@@ -48,22 +47,4 @@ keymap('v', 'p', '"_dP', opts)
 keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
 
--- Get from clipboar
-keymap('n', "<S-'><S-=>", '<LEADER>c', opts)
-
--- Null LS
--- Format
-keymap('n', '<LEADER>p', ':lua vim.lsp.buf.format({ async = true })<CR>', opts)
-
--- BarBar
-keymap('n', '<S-h>', ':BufferPrevious<cr>', opts)
-keymap('n', '<S-l>', ':BufferNext<cr>', opts)
-keymap('n', '<A-c>', ':BufferClose<cr>', opts)
-
 -- Replace with Registers
-keymap('n', '<LEADER>r', '<Plug>ReplaceWithRegisterOperator', opts)
-keymap('n', '<LEADER>rr', '<Plug>ReplaceWithRegisterLine', opts)
-
--- DAP
--- DAP UI
-keymap('n', '<LEADER>dui', ":lua require('dapui').toggle()<CR>", opts)

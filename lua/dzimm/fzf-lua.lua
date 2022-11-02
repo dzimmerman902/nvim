@@ -35,12 +35,7 @@ fzf_lua.setup {
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
-keymap(
-    'n',
-    '<LEADER>ff',
-    ":lua require'fzf-lua'.files({ winopts = { preview = { vertical = 'down:0%', horizontal = 'right:0%' }}})<CR>",
-    opts
-)
+keymap('n', '<LEADER>ff', ":lua require'fzf-lua'.files({ winopts = { preview = { vertical = 'down:33%' }}})<CR>", opts)
 keymap('n', '<LEADER>fg', ":lua require'fzf-lua'.live_grep()<CR>", opts)
 keymap('n', '<LEADER>fc', ":lua require'fzf-lua'.command_history()<CR>", opts)
 keymap('n', '<LEADER>fr', ":lua require'fzf-lua'.registers()<CR>", opts)

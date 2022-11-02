@@ -7,6 +7,12 @@ local dap_ok, dap = pcall(require, 'dap')
 if not dap_ok then
     return
 end
+
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+keymap('n', '<LEADER>dui', ":lua require('dapui').toggle()<CR>", opts)
+
 dapui.setup {
     icons = { expanded = '▾', collapsed = '▸', current_frame = '▸' },
     mappings = {
@@ -71,17 +77,3 @@ dapui.setup {
 dap.listeners.after.event_initialized['dapui_config'] = function()
     dapui.open()
 end
-
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
-
-keymap('n', '<LEADER>dc', ':DapContinue<CR>', opts)
-keymap('n', '<LEADER>dt', ':DapTerminate<CR>', opts)
-keymap('n', '<LEADER>db', ':DapToggleBreakpoint<CR>', opts)
-keymap('n', '<LEADER>db', ':DapToggleBreakpoint<CR>', opts)
-keymap('n', '<LEADER>dbc', ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
-keymap('n', '<LEADER>dr', ":lua require'dap'.repl.open()<CR>", opts)
-keymap('n', '<LEADER>dl', ":lua require'dap'.run_last()<CR>", opts)
-keymap('n', '<LEADER>di', ':DapStepInto<CR>', opts)
-keymap('n', '<LEADER>do', ':DapStepOver<CR>', opts)
-keymap('n', '<LEADER>de', ':DapStepOut<CR>', opts)

@@ -47,8 +47,5 @@ vim.g.ale_javascript_eslint_executable = 'eslint_d'
 vim.g.ale_javascript_eslint_use_global = 1
 vim.g.gitblame_enabled = 1
 vim.g.gitblame_message_template = '<author> • <summary>'
-vim.g.loaded = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
-vim.g.WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
-vim.g.WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1

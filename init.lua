@@ -1,6 +1,7 @@
 require 'dzimm.plugins'
 require 'dzimm.options'
 require 'dzimm.keymap'
+
 require 'dzimm.autopairs'
 require 'dzimm.barbar'
 require 'dzimm.colorscheme'
@@ -11,38 +12,10 @@ require 'dzimm.fzf-lua'
 require 'dzimm.gitsigns'
 require 'dzimm.lspconfig'
 require 'dzimm.lualine'
-require 'dzimm.nerdtree'
 require 'dzimm.null-ls'
+require 'dzimm.nvim-tree'
 require 'dzimm.nvim-cmp'
+require 'dzimm.replace-with-register'
 require 'dzimm.toggleterm'
 require 'dzimm.treesitter'
 require 'dzimm.windows'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
