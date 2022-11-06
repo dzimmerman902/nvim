@@ -17,6 +17,9 @@ vim.g.maplocalleader = ' '
 -- Write Buffer
 keymap('n', '<LEADER>w', ':w<CR>', opts)
 
+-- Save/Quit
+keymap('n', '<LEADER>wq', ':wqa<CR>', opts)
+
 -- Exit Insert Mode
 keymap('i', 'kj', '<ESC>', opts)
 keymap('i', 'jk', '<ESC>', opts)
