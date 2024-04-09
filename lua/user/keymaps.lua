@@ -88,5 +88,18 @@ keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hl
 keymap({ "i", "n" }, "<leader>sv", ":source $MYVIMRC<cr>", { desc = "Reload nvim", remap = true })
 
 -- lazy
-keymap("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+keymap("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- Function to toggle between relative and absolute line numbers
+function ToggleLineNumbers()
+    if vim.o.relativenumber then
+        vim.o.number = true
+        vim.o.relativenumber = false
+    else
+        vim.o.relativenumber = true
+        vim.o.number = false
+    end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>ln', ':lua ToggleLineNumbers()<CR>', opts)
 
