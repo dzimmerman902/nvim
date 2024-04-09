@@ -88,7 +88,7 @@ keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hl
 keymap({ "i", "n" }, "<leader>sv", ":source $MYVIMRC<cr>", { desc = "Reload nvim", remap = true })
 
 -- lazy
-keymap("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Lazy" })
+keymap("n", "<leader>z", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Function to toggle between relative and absolute line numbers
 function ToggleLineNumbers()
@@ -101,5 +101,12 @@ function ToggleLineNumbers()
     end
 end
 
-vim.api.nvim_set_keymap('n', '<leader>ln', ':lua ToggleLineNumbers()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>nu', ':lua ToggleLineNumbers()<CR>', opts)
 
+-- Function to toggle word wrap
+function ToggleWordWrap()
+    vim.wo.wrap = not vim.wo.wrap
+end
+
+-- Map the function to a key combination (for example, <leader>ww)
+vim.api.nvim_set_keymap('n', '<leader>ww', ':lua ToggleWordWrap()<CR>', opts)

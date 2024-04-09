@@ -1,37 +1,36 @@
 local M = {
-  "williamboman/mason-lspconfig.nvim",
-  dependencies = {
-    "williamboman/mason.nvim",
-  },
+    'williamboman/mason-lspconfig.nvim',
+    dependencies = {
+        'williamboman/mason.nvim',
+    },
 }
 
-
 function M.config()
-  local wk = require "which-key"
+    local wk = require 'which-key'
 
-  wk.register {
-    ["<leader>m"] = { "<cmd>Mason<cr>", "Mason" }
-  }
+    wk.register {
+        ['<leader>m'] = { '<cmd>Mason<cr>', 'Mason' },
+    }
 
-  local servers = {
-    "lua_ls",
-    "cssls",
-    "html",
-    "tsserver",
-    "pyright",
-    "bashls",
-    "jsonls",
-  }
+    local servers = {
+        'lua_ls',
+        'cssls',
+        'html',
+        'tsserver',
+        'pyright',
+        'bashls',
+        'jsonls',
+    }
 
-  require("mason").setup {
-    ui = {
-      border = "rounded",
-    },
-  }
+    require('mason').setup {
+        ui = {
+            border = 'rounded',
+        },
+    }
 
-  require("mason-lspconfig").setup {
-    ensure_installed = servers,
-  }
+    require('mason-lspconfig').setup {
+        ensure_installed = servers,
+    }
 end
 
 return M
