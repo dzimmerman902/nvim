@@ -16,6 +16,7 @@ function M.config()
         sources = {
             formatting.stylua,
             formatting.prettier,
+            formatting.terraform_fmt,
             -- formatting.black,
             -- formatting.eslint,
             -- null_ls.builtins.diagnostics.flake8,

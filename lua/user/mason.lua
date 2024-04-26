@@ -9,7 +9,7 @@ function M.config()
     local wk = require 'which-key'
 
     wk.register {
-        ['<leader>m'] = { '<cmd>Mason<cr>', 'Mason' },
+        ['<leader>M'] = { '<cmd>Mason<cr>', 'Mason' },
     }
 
     local servers = {
