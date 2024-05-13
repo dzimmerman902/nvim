@@ -12,7 +12,7 @@ function M.config()
     local dap, dapui = require 'dap', require 'dapui'
 
     dap.listeners.before.attach.dapui_config = function()
-        dapui.open({ reset = true })
+        dapui.open { reset = true }
     end
     dap.listeners.before.launch.dapui_config = function()
         dapui.open()

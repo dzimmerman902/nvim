@@ -13,7 +13,7 @@ function M.config()
 
     require('nvim-tree').setup {
         filters = {
-            git_ignored = false
+            git_ignored = false,
         },
         hijack_netrw = false,
         sync_root_with_cwd = true,

@@ -77,7 +77,7 @@ function M.config()
         'bashls',
         'jsonls',
         'yamlls',
-        'terraform_lsp',
+        'terraformls',
     }
 
     local default_diagnostic_config = {
