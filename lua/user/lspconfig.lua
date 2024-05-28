@@ -78,6 +78,7 @@ function M.config()
         'jsonls',
         'yamlls',
         'terraformls',
+        'sourcekit',
     }
 
     local default_diagnostic_config = {
@@ -113,6 +114,7 @@ function M.config()
     vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
     vim.lsp.handlers['textDocument/signatureHelp'] =
         vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+
     require('lspconfig.ui.windows').default_options.border = 'rounded'
 
     for _, server in pairs(servers) do
@@ -122,6 +124,7 @@ function M.config()
         }
 
         local require_ok, settings = pcall(require, 'user.lspsettings.' .. server)
+
         if require_ok then
             opts = vim.tbl_deep_extend('force', settings, opts)
         end

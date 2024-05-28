@@ -15,6 +15,7 @@ function M.config()
             'bash',
             'python',
             'terraform',
+            'swift',
         },
         highlight = { enable = true },
         indent = { enable = true },

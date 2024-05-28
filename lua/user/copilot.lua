@@ -1,11 +1,14 @@
 local M = {
-    'github/copilot.vim',
+    'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
 }
 
 function M.config()
-    require('copilot').setup {}
+    require('copilot').setup {
+        -- suggestion = { enable = false },
+        -- panel = { enable = false },
+    }
 end
 
 return M
