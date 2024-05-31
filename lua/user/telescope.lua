@@ -7,6 +7,9 @@ local M = {
 
 function M.config()
     local wk = require 'which-key'
+    local icons = require 'user.icons'
+    local actions = require 'telescope.actions'
+
     wk.register {
         ['<leader>bb'] = { '<cmd>Telescope buffers previewer=false<cr>', 'Find' },
         ['<leader>fb'] = { '<cmd>Telescope git_branches<cr>', 'Checkout branch' },
@@ -19,9 +22,6 @@ function M.config()
         ['<leader>fr'] = { '<cmd>Telescope oldfiles<cr>', 'Recent File' },
         ['<leader>fn'] = { '<cmd>Telescope neoclip<cr>', 'Neoclip' },
     }
-
-    local icons = require 'user.icons'
-    local actions = require 'telescope.actions'
 
     require('telescope').setup {
         defaults = {
@@ -43,7 +43,6 @@ function M.config()
                 '--hidden',
                 '--glob=!.git/',
             },
-
             mappings = {
                 i = {
                     ['<C-n>'] = actions.cycle_history_next,

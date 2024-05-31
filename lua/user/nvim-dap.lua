@@ -61,6 +61,7 @@ function M.config()
             processId = require('dap.utils').pick_process,
         },
     }
+    dap.configurations['local-lua'] = {}
 end
 
 return M
