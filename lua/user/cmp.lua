@@ -42,6 +42,7 @@ local M = {
 function M.config()
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+
     require('luasnip/loaders/from_vscode').lazy_load()
 
     vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
@@ -52,14 +53,6 @@ function M.config()
         local col = vim.fn.col '.' - 1
         return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s'
     end
-
-    cmp.event:on('menu_opened', function()
-        vim.b.copilot_suggestion_hidden = true
-    end)
-
-    cmp.event:on('menu_closed', function()
-        vim.b.copilot_suggestion_hidden = false
-    end)
 
     local icons = require 'user.icons'
 
@@ -143,7 +136,6 @@ function M.config()
             end,
         },
         sources = {
-            { name = 'copilot' },
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
             { name = 'cmp_tabnine' },

@@ -4,12 +4,12 @@ local M = {
 }
 
 function M.config()
+    local icons = require 'user.icons'
     local wk = require 'which-key'
+
     wk.register {
         ['<leader>e'] = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
     }
-
-    local icons = require 'user.icons'
 
     require('nvim-tree').setup {
         filters = {

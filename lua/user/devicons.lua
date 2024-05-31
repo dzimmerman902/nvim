@@ -1,9 +1,10 @@
 local M = {
     'nvim-tree/nvim-web-devicons',
     event = 'VeryLazy',
-    config = true,
 }
 
-function M.config() end
+function M.config()
+    require('nvim-web-devicons').setup {}
+end
 
 return M

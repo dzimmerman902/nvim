@@ -56,7 +56,6 @@ function M.config()
         ['<leader>lq'] = { '<cmd>lua vim.diagnostic.setloclist()<cr>', 'Quickfix' },
         ['<leader>lr'] = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
     }
-
     wk.register {
         ['<leader>la'] = {
             name = 'LSP',
@@ -66,14 +65,14 @@ function M.config()
 
     local lspconfig = require 'lspconfig'
     local icons = require 'user.icons'
-
     local servers = {
+        'emmet_language_server',
         'lua_ls',
         'cssls',
         'eslint',
         'html',
+        'htmx',
         'tsserver',
-        'pyright',
         'bashls',
         'jsonls',
         'yamlls',
