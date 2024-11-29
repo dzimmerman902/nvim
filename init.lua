@@ -1,20 +1,20 @@
-require("config.utils")
-require("config.options")
-require("config.keymaps")
-require("config.lazy")
+require('config.utils')
+require('config.options')
+require('config.keymaps')
+require('config.lazy')
 
-vim.cmd("colorscheme tokyonight")
+vim.cmd('colorscheme tokyonight')
 
-local lspconfig_defaults = require("lspconfig").util.default_config
+local lspconfig_defaults = require('lspconfig').util.default_config
 
 lspconfig_defaults.capabilities =
-    vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+    vim.tbl_deep_extend('force', lspconfig_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 -- LSP
-vim.api.nvim_create_autocmd("LspAttach", {
-  desc = "LSP actions",
-  callback = function(event)
-    local opts = { buffer = event.buf }
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
 
     -- stylua: ignore start
     vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
@@ -27,6 +27,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
     vim.keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
     vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-    -- stylua: ignore end
-  end,
+        -- stylua: ignore end
+    end,
 })

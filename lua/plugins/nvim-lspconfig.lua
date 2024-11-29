@@ -1,48 +1,51 @@
 return {
-  "neovim/nvim-lspconfig",
-  config = function()
-    -- LUA
-    require("lspconfig").lua_ls.setup({
-      on_init = function(client)
-        if client.workspace_folders then
-          local path = client.workspace_folders[1].name
-          if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
-            return
-          end
-        end
+	"neovim/nvim-lspconfig",
+	config = function()
+		-- LUA
+		require("lspconfig").lua_ls.setup({
+			on_init = function(client)
+				if client.workspace_folders then
+					local path = client.workspace_folders[1].name
+					if
+						vim.uv.fs_stat(path .. "/.luarc.json")
+						or vim.uv.fs_stat(path .. "/.luarc.jsonc")
+					then
+						return
+					end
+				end
 
-        client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-          runtime = {
-            version = "LuaJIT",
-          },
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.env.VIMRUNTIME,
-            },
-          },
-        })
-      end,
-      settings = {
-        Lua = {},
-      },
-    })
+				client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+					runtime = {
+						version = "LuaJIT",
+					},
+					workspace = {
+						checkThirdParty = false,
+						library = {
+							vim.env.VIMRUNTIME,
+						},
+					},
+				})
+			end,
+			settings = {
+				Lua = {},
+			},
+		})
 
-    -- TYPESCRIPT
-    require("lspconfig").ts_ls.setup({
-      init_options = {
-        plugins = {
-          {
-            name = "@vue/typescript-plugin",
-            location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-            languages = { "javascript", "typescript" },
-          },
-        },
-      },
-      filetypes = {
-        "javascript",
-        "typescript",
-      },
-    })
-  end,
+		-- TYPESCRIPT
+		require("lspconfig").ts_ls.setup({
+			init_options = {
+				plugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
+						languages = { "javascript", "typescript" },
+					},
+				},
+			},
+			filetypes = {
+				"javascript",
+				"typescript",
+			},
+		})
+	end,
 }
