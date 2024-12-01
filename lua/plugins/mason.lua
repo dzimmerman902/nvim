@@ -1,7 +1,7 @@
 return {
-	"williamboman/mason.nvim",
-	opts = {},
-	keys = {
-		{ "<leader>m", "<cmd>Mason<cr>" },
-	},
+    'williamboman/mason.nvim',
+    opts = {},
+    keys = {
+        { '<leader>m', '<cmd>Mason<cr>' },
+    },
 }

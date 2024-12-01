@@ -1,23 +1,23 @@
 return {
-	"folke/snacks.nvim",
-	priority = 1000,
-	lazy = false,
-	opts = {
-		bigfile = { enabled = true },
-		notifier = {
-			enabled = true,
-			timeout = 3000,
-		},
-		quickfile = { enabled = true },
-		statuscolumn = { enabled = true },
-		words = { enabled = true },
-		styles = {
-			notification = {
-				wo = { wrap = true }, -- Wrap notifications
-			},
-		},
-	},
-	keys = {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = {
+        bigfile = { enabled = true },
+        notifier = {
+            enabled = true,
+            timeout = 3000,
+        },
+        quickfile = { enabled = true },
+        statuscolumn = { enabled = true },
+        words = { enabled = true },
+        styles = {
+            notification = {
+                wo = { wrap = true }, -- Wrap notifications
+            },
+        },
+    },
+    keys = {
     -- stylua: ignore start
     { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications", },
     { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer", },
@@ -28,30 +28,30 @@ return {
     { "<c-_>",      function() Snacks.terminal() end,                desc = "which_key_ignore", },
     { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference", },
     { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", },
-		-- stylua: ignore end
-		{
-			"<leader>N",
-			desc = "Neovim News",
-			function()
-				Snacks.win({
-					file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-					width = 0.6,
-					height = 0.6,
-					wo = {
-						spell = false,
-						wrap = false,
-						signcolumn = "yes",
-						statuscolumn = " ",
-						conceallevel = 3,
-					},
-				})
-			end,
-		},
-	},
-	init = function()
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "VeryLazy",
-			callback = function()
+        -- stylua: ignore end
+        {
+            '<leader>N',
+            desc = 'Neovim News',
+            function()
+                Snacks.win({
+                    file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
+                    width = 0.6,
+                    height = 0.6,
+                    wo = {
+                        spell = false,
+                        wrap = false,
+                        signcolumn = 'yes',
+                        statuscolumn = ' ',
+                        conceallevel = 3,
+                    },
+                })
+            end,
+        },
+    },
+    init = function()
+        vim.api.nvim_create_autocmd('User', {
+            pattern = 'VeryLazy',
+            callback = function()
         -- stylua: ignore start
         _G.dd = function(...) Snacks.debug.inspect(...) end
         _G.bt = function() Snacks.debug.backtrace() end
@@ -66,8 +66,8 @@ return {
           "<leader>uc")
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background", }):map("<leader>ub")
-				-- stylua: ignore end
-			end,
-		})
-	end,
+                -- stylua: ignore end
+            end,
+        })
+    end,
 }
