@@ -18,16 +18,16 @@ return {
         },
     },
     keys = {
-    -- stylua: ignore start
-    { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications", },
-    { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer", },
-    { "<leader>gg", function() Snacks.lazygit() end,                 desc = "Lazygit", },
-    { "<leader>gB", function() Snacks.gitbrowse() end,               desc = "Git Browse", },
-    { "<leader>gf", function() Snacks.lazygit.log_file() end,        desc = "Lazygit Current File History", },
-    { "<leader>gl", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)", },
-    { "<c-_>",      function() Snacks.terminal() end,                desc = "which_key_ignore", },
-    { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference", },
-    { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", },
+        -- stylua: ignore start
+        { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications", },
+        { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer", },
+        { "<leader>gg", function() Snacks.lazygit() end,                 desc = "Lazygit", },
+        { "<leader>gB", function() Snacks.gitbrowse() end,               desc = "Git Browse", },
+        { "<leader>gf", function() Snacks.lazygit.log_file() end,        desc = "Lazygit Current File History", },
+        { "<leader>gl", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)", },
+        { "<c-_>",      function() Snacks.terminal() end,                desc = "which_key_ignore", },
+        { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference", },
+        { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", },
         -- stylua: ignore end
         {
             '<leader>N',

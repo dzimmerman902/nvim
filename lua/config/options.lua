@@ -23,7 +23,7 @@ opt.fillchars = {
 }
 opt.foldlevel = 99
 opt.foldmethod = 'manual'
-opt.formatoptions = "jcroqlnt" -- tcqj
+opt.formatoptions = 'jcroqlnt' -- tcqj
 opt.grepformat = '%f:%l:%c:%m'
 opt.grepprg = 'rg --vimgrep'
 opt.ignorecase = true -- Ignore case
@@ -50,8 +50,8 @@ opt.smartindent = true -- Insert indents automatically
 opt.spelllang = { 'en' }
 opt.spelloptions:append('noplainbuffer')
 opt.splitbelow = true -- Put new windows below current
-opt.splitkeep = 'screen'
 opt.splitright = true -- Put new windows right of current
+opt.splitkeep = 'screen'
 opt.tabstop = 2 -- Number of spaces tabs count for
 opt.termguicolors = true -- True color support
 opt.timeoutlen = 5000
