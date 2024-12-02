@@ -1,8 +1,16 @@
+-- return {
+--     'folke/tokyonight.nvim',
+--     lazy = true,
+--     opts = { style = 'moon' },
+--     init = function()
+--         vim.cmd('colorscheme tokyonight')
+--     end,
+-- }
+
 return {
-    'folke/tokyonight.nvim',
-    lazy = true,
-    opts = { style = 'moon' },
-    config = function()
-        vim.cmd('colorscheme tokyonight')
+    'marko-cerovac/material.nvim',
+    init = function()
+        -- vim.g.material_style = "darker"
+        vim.cmd('colorscheme material')
     end,
 }
