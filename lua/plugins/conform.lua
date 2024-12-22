@@ -60,6 +60,7 @@ return { -- Autoformat
             ['markdown'] = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
             ['markdown.mdx'] = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
             python = { 'black '}
+            xml = { 'xmlformatter' }
         },
     },
 }
