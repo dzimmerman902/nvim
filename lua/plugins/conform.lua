@@ -59,6 +59,7 @@ return { -- Autoformat
             json = { 'prettierd', 'prettier', stop_after_first = true },
             ['markdown'] = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
             ['markdown.mdx'] = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
+            xml = { 'xmlformatter' }
         },
     },
 }
