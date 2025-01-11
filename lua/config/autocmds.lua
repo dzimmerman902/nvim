@@ -10,3 +10,10 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
         vim.cmd('tabdo wincmd =')
     end,
 })
+
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    pattern = "*.ejs",
+    callback = function()
+        vim.bo.filetype = "html"
+    end,
+})
