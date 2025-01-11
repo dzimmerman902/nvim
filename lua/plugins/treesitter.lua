@@ -1,3 +1,4 @@
+-- return {}
 return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -5,6 +6,7 @@ return {
         require('nvim-treesitter.configs').setup({
             highlight = {
                 enable = true,
+                disable = { 'markdown' },
             },
             ensure_installed = {
                 'html',
@@ -14,8 +16,6 @@ return {
                 'lua',
                 'regex',
                 'jsdoc',
-                'markdown',
-                'markdown_inline',
                 'terraform',
             },
         })

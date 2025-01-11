@@ -7,10 +7,16 @@
 --     end,
 -- }
 
+-- return {
+--     'marko-cerovac/material.nvim',
+--     init = function()
+--         vim.cmd('colorscheme material')
+--     end,
+-- }
+--
 return {
-    'marko-cerovac/material.nvim',
+    'rebelot/kanagawa.nvim',
     init = function()
-        -- vim.g.material_style = "darker"
-        vim.cmd('colorscheme material')
+        vim.cmd('colorscheme kanagawa-wave')
     end,
 }

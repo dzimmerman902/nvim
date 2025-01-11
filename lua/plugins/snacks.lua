@@ -21,6 +21,7 @@ return {
         -- stylua: ignore start
         { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications", },
         { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer", },
+        { "<leader>bo", function() Snacks.bufdelete.other() end,         desc = "Delete Buffer Other", },
         { "<leader>gg", function() Snacks.lazygit() end,                 desc = "Lazygit", },
         { "<leader>gB", function() Snacks.gitbrowse() end,               desc = "Git Browse", },
         { "<leader>gf", function() Snacks.lazygit.log_file() end,        desc = "Lazygit Current File History", },
