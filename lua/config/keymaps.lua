@@ -8,7 +8,7 @@ map('i', 'kj', '<esc>', { noremap = true, silent = true })
 map('n', '<S-h>', '<cmd>bprevious<cr>', { noremap = true, silent = true })
 map('n', '<S-l>', '<cmd>bnext<cr>', { noremap = true, silent = true })
 
-map('n', '<leader>bw', '<cmd>w<cr>', { noremap = true, silent = true })
+map('n', '<leader>bb', '<cmd>w<cr>', { noremap = true, silent = true })
 
 map('n', '<c-j>', '<c-w>j', { noremap = true, silent = true })
 map('n', '<c-k>', '<c-w>k', { noremap = true, silent = true })
@@ -33,3 +33,5 @@ map('n', '<C-Right>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window W
 
 map('v', '<', '<gv')
 map('v', '>', '>gv')
+
+map('n', '<leader>h', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
