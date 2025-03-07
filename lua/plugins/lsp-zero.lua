@@ -8,9 +8,6 @@ return {
             lspconfig_defaults.capabilities,
             require('cmp_nvim_lsp').default_capabilities()
         )
-
-        -- This is where you enable features that only work
-        -- if there is a language server active in the file
         vim.api.nvim_create_autocmd('LspAttach', {
             desc = 'LSP actions',
             callback = function(event)
@@ -24,14 +21,28 @@ return {
                 vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
                 vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
                 vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-                vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
                 vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
             end,
         })
-
         require('lspconfig').eslint.setup({})
         require('lspconfig').lua_ls.setup({})
-        require('lspconfig').ts_ls.setup({})
+        require('lspconfig').ts_ls.setup({
+            init_options = {
+                plugins = {
+                    {
+                        name = '@vue/typescript-plugin',
+                        location = '/usr/local/lib/node_modules/@vue/typescript-plugin',
+                        languages = { 'javascript', 'typescript', 'vue' },
+                    },
+                },
+            },
+            filetypes = {
+                'javascript',
+                'typescript',
+                'vue',
+            },
+        })
+        require('lspconfig').terraform_lsp.setup({})
 
         local cmp = require('cmp')
 
@@ -53,8 +64,10 @@ return {
             },
             completion = {
                 completeopt = 'menu,menuone,noinsert',
+                autocomplete = false,
             },
             mapping = cmp.mapping.preset.insert({
+                ['<C-space>'] = cmp.mapping.complete(),
                 ['<C-y>'] = cmp.mapping.confirm({ select = false }),
                 ['<C-f>'] = cmp.mapping(function(fallback)
                     local luasnip = require('luasnip')
@@ -75,6 +88,31 @@ return {
                 end, { 'i', 's' }), -- scroll up and down the documentation window
                 ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                ['<Tab>'] = cmp.mapping(function(fallback)
+                    local luasnip = require('luasnip')
+                    local col = vim.fn.col('.') - 1
+
+                    if cmp.visible() then
+                        cmp.select_next_item({ behavior = 'select' })
+                    elseif luasnip.expand_or_locally_jumpable() then
+                        luasnip.expand_or_jump()
+                    elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+                        fallback()
+                    else
+                        cmp.complete()
+                    end
+                end, { 'i', 's' }),
+                ['<S-Tab>'] = cmp.mapping(function(fallback)
+                    local luasnip = require('luasnip')
+
+                    if cmp.visible() then
+                        cmp.select_prev_item({ behavior = 'select' })
+                    elseif luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { 'i', 's' }),
             }),
             window = {
                 completion = cmp.config.window.bordered(),
