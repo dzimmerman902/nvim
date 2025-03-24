@@ -38,7 +38,10 @@ return { -- Autoformat
             json = { 'prettier' },
             ['markdown'] = { 'prettier' },
             ['markdown.mdx'] = { 'prettier' },
-            xml = { 'xmlformatter' },
+            xml = { 'prettier' },
+            terraform = { 'terraform_fmt' },
+            html = { 'prettier' },
+            typescript = { 'prettier' },
         },
     },
 }
