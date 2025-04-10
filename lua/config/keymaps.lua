@@ -35,3 +35,7 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 
 map('n', '<leader>h', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+
+-- Render Markdown
+map('n', '<leader>rd', '<cmd>RenderMarkdown disable<CR>', { noremap = true, silent = true })
+map('n', '<leader>re', '<cmd>RenderMarkdown enable<CR>', { noremap = true, silent = true })
