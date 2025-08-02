@@ -65,6 +65,25 @@ return {
 					-- Accept ([y]es) the completion.
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
+					-- Tab to select first item (user preference)
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+
+					-- Enter to confirm selection
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+
 					-- Manually trigger a completion from nvim-cmp.
 					["<C-Space>"] = cmp.mapping.complete({}),
 
