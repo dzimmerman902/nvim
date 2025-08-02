@@ -83,8 +83,8 @@ opt.numberwidth = 4
 -- Enable mouse support
 opt.mouse = "a"
 
--- Time in milliseconds to wait for a mapped sequence to complete
-opt.timeoutlen = 300
+-- Time in milliseconds to wait for a mapped sequence to complete (user prefers shorter timeout)
+opt.timeoutlen = 250
 
 -- Enable persistent undo
 opt.undofile = true

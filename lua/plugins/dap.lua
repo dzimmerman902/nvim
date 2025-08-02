@@ -52,7 +52,32 @@ return {
 				{ "<leader>dp", dap.pause, desc = "Pause" },
 				{ "<leader>dr", dap.repl.toggle, desc = "Toggle REPL" },
 				{ "<leader>ds", dap.session, desc = "Session" },
-				{ "<leader>dt", dap.terminate, desc = "Terminate" },
+				{
+					"<leader>dt",
+					function()
+						-- Force terminate with timeout
+						dap.terminate()
+						-- If termination takes too long, force close
+						vim.defer_fn(function()
+							if dap.session() then
+								dap.close()
+								dapui.close()
+							end
+						end, 2000) -- 2 second timeout
+					end,
+					desc = "Terminate (with timeout)"
+				},
+				{
+					"<leader>dT",
+					function()
+						-- Emergency force quit - immediately close everything
+						dap.close()
+						dapui.close()
+						-- Kill any remaining debug processes
+						vim.cmd("silent! !pkill -f js-debug")
+					end,
+					desc = "Force terminate (emergency)"
+				},
 				{ "<leader>dw", require("dap.ui.widgets").hover, desc = "Widgets" },
 
 				-- DAP UI keymaps
@@ -101,6 +126,11 @@ return {
 						vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
 						"${port}",
 					},
+				},
+				-- Add timeout settings for faster termination
+				options = {
+					initialize_timeout_sec = 5,
+					disconnect_timeout_sec = 2,
 				},
 			}
 
@@ -167,7 +197,7 @@ return {
 					},
 				},
 				-- Expand/collapse settings
-				expand_lines = false, -- Don't auto-expand long lines
+				expand_lines = true, -- Allow text to bleed over past window width
 				layouts = {
 					{
 						elements = {
@@ -194,20 +224,42 @@ return {
 			-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
 			vim.keymap.set("n", "<F7>", dapui.toggle, { desc = "Debug: See last session result." })
 
-			dap.listeners.after.event_initialized["dapui_config"] = dapui.open
-			dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-			dap.listeners.before.event_exited["dapui_config"] = dapui.close
+			-- DAP event listeners for UI management
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+
+			-- Improved termination handling
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+				-- Clear any lingering processes
+				vim.defer_fn(function()
+					if dap.session() then
+						dap.close()
+					end
+				end, 500)
+			end
+
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+				-- Ensure clean exit
+				vim.defer_fn(function()
+					if dap.session() then
+						dap.close()
+					end
+				end, 500)
+			end
 
 			-- Install golang specific config
 			require("dap-go").setup()
 		end,
 	},
 
-	-- Virtual text for the debugger
-	{
-		"theHamsta/nvim-dap-virtual-text",
-		opts = {},
-	},
+	-- Virtual text for the debugger (disabled - shows grayed values inline)
+	-- {
+	-- 	"theHamsta/nvim-dap-virtual-text",
+	-- 	opts = {},
+	-- },
 
 	-- Mason integration for DAP
 	{

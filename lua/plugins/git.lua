@@ -82,26 +82,22 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open LazyGit in popup" },
+			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" },
 		},
 		config = function()
-			-- Configure lazygit to open in a floating window
-			vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
-			vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window
-			vim.g.lazygit_floating_window_border_chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } -- customize border
-			vim.g.lazygit_floating_window_use_plenary = 0 -- use plenary.nvim to manage floating window if available
-			vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not installed
-			vim.g.lazygit_use_custom_config_file_path = 0 -- config file path is used if this value is 1
+			-- Simple LazyGit configuration - let the plugin handle terminal mode
+			vim.g.lazygit_floating_window_winblend = 0
+			vim.g.lazygit_floating_window_scaling_factor = 0.9
+			vim.g.lazygit_use_neovim_remote = 1
 
-			-- Ensure proper terminal settings for lazygit
+			-- Simple autocmd to ensure LazyGit starts in terminal mode
 			vim.api.nvim_create_autocmd("TermOpen", {
 				pattern = "*lazygit*",
 				callback = function()
-					-- Disable line numbers in lazygit terminal
+					-- Just disable UI elements, let LazyGit handle the rest
 					vim.opt_local.number = false
 					vim.opt_local.relativenumber = false
-					-- Ensure we start in terminal mode
-					vim.cmd("startinsert")
+					vim.opt_local.signcolumn = "no"
 				end,
 			})
 		end,

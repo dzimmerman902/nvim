@@ -77,14 +77,19 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Only set wrapped navigation for j/k in non-terminal buffers
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
 	pattern = "*",
 	callback = function()
-		if vim.bo.buftype ~= "terminal" then
-			keymap("n", "j", "gj", opts)
-			keymap("n", "k", "gk", opts)
-			keymap("v", "j", "gj", opts)
-			keymap("v", "k", "gk", opts)
+		-- More robust terminal detection
+		local is_terminal = vim.bo.buftype == "terminal"
+		local is_lazygit = vim.fn.expand("%"):match("lazygit") ~= nil
+
+		-- Only apply wrapped navigation to regular text files
+		if not is_terminal and not is_lazygit and vim.bo.filetype ~= "" then
+			keymap("n", "j", "gj", { buffer = true, noremap = true, silent = true })
+			keymap("n", "k", "gk", { buffer = true, noremap = true, silent = true })
+			keymap("v", "j", "gj", { buffer = true, noremap = true, silent = true })
+			keymap("v", "k", "gk", { buffer = true, noremap = true, silent = true })
 		end
 	end,
 })
@@ -118,8 +123,10 @@ keymap("i", "<C-l>", "<Right>", opts)
 -- FILE OPERATIONS
 -- ============================================================================
 
--- Quick save
-keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
+-- Save file
+keymap("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+keymap("i", "<C-s>", "<Esc><cmd>w<CR>a", { desc = "Save file and return to insert" })
+keymap("v", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
 
 -- Quick quit
 keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
@@ -127,8 +134,8 @@ keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 -- Force quit
 keymap("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Force quit" })
 
--- Save and quit
-keymap("n", "<leader>wq", "<cmd>wq<CR>", { desc = "Save and quit" })
+-- Save and quit (using Ctrl+s paradigm)
+keymap("n", "<C-s><C-q>", "<cmd>wq<CR>", { desc = "Save and quit" })
 
 -- New file
 keymap("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New file" })
@@ -147,11 +154,19 @@ end, { desc = "Open quarter-size terminal at bottom" })
 -- Full-window terminal
 keymap("n", "<leader>tT", "<cmd>terminal<CR>", { desc = "Open full-window terminal" })
 
--- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", opts)
+-- Better terminal navigation (excluding LazyGit)
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = "*",
+	callback = function()
+		local is_lazygit = vim.fn.expand("%"):match("lazygit") ~= nil
+		if not is_lazygit then
+			keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", { buffer = true, noremap = true, silent = true })
+			keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", { buffer = true, noremap = true, silent = true })
+			keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", { buffer = true, noremap = true, silent = true })
+			keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", { buffer = true, noremap = true, silent = true })
+		end
+	end,
+})
 
 -- ============================================================================
 -- UI TOGGLES
@@ -167,18 +182,20 @@ keymap("n", "<leader>ln", "<cmd>set relativenumber!<CR>", { desc = "Toggle relat
 -- LSP & DIAGNOSTICS
 -- ============================================================================
 
--- Diagnostic keymaps
+-- Note: Most LSP and diagnostic keymaps are configured in lua/plugins/lsp.lua
+-- Only keeping non-conflicting global diagnostic keymaps here
 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-keymap("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-keymap("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+-- Removed <leader>df and <leader>dl to avoid conflicts with LSP config
 
 -- ============================================================================
 -- FILE EXPLORER
 -- ============================================================================
 
--- Neo-tree file explorer (toggle)
-keymap("n", "<leader>e", "<cmd>Neotree toggle current<CR>", { desc = "Toggle directory in current window" })
+-- Note: Neo-tree keymaps are configured in lua/plugins/neo-tree.lua
+-- Removed duplicate <leader>e keymap to avoid conflicts
+
+
 
 -- ============================================================================
 -- DEBUGGING
