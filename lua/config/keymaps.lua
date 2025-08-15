@@ -52,18 +52,6 @@ keymap("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in 
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Buffer operations
-keymap("n", "<leader>bd", function()
-	local buf_count = #vim.fn.getbufinfo({ buflisted = 1 })
-	if buf_count > 1 then
-		vim.cmd("bprevious")
-	else
-		vim.cmd("enew")
-	end
-	vim.cmd("bdelete #")
-end, { desc = "Delete buffer (keep window)" })
-keymap("n", "<leader>ba", "<cmd>%bd|e#<CR>", { desc = "Delete all buffers except current" })
-
 -- ============================================================================
 -- TEXT EDITING
 -- ============================================================================
@@ -75,24 +63,6 @@ keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
-
--- Only set wrapped navigation for j/k in non-terminal buffers
-vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
-	pattern = "*",
-	callback = function()
-		-- More robust terminal detection
-		local is_terminal = vim.bo.buftype == "terminal"
-		local is_lazygit = vim.fn.expand("%"):match("lazygit") ~= nil
-
-		-- Only apply wrapped navigation to regular text files
-		if not is_terminal and not is_lazygit and vim.bo.filetype ~= "" then
-			keymap("n", "j", "gj", { buffer = true, noremap = true, silent = true })
-			keymap("n", "k", "gk", { buffer = true, noremap = true, silent = true })
-			keymap("v", "j", "gj", { buffer = true, noremap = true, silent = true })
-			keymap("v", "k", "gk", { buffer = true, noremap = true, silent = true })
-		end
-	end,
-})
 
 -- Keep cursor centered when scrolling
 keymap("n", "<C-d>", "<C-d>zz", opts)
@@ -128,45 +98,8 @@ keymap("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 keymap("i", "<C-s>", "<Esc><cmd>w<CR>a", { desc = "Save file and return to insert" })
 keymap("v", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
 
--- Quick quit
-keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
-
 -- Force quit
-keymap("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Force quit" })
-
--- Save and quit (using Ctrl+s paradigm)
-keymap("n", "<C-s><C-q>", "<cmd>wq<CR>", { desc = "Save and quit" })
-
--- New file
-keymap("n", "<leader>fn", "<cmd>enew<CR>", { desc = "New file" })
-
--- ============================================================================
--- TERMINAL
--- ============================================================================
-
--- Quarter-size terminal at bottom (like VSCode)
-keymap("n", "<leader>tt", function()
-	vim.cmd("split")
-	vim.cmd("resize " .. math.floor(vim.o.lines * 0.25))
-	vim.cmd("terminal")
-end, { desc = "Open quarter-size terminal at bottom" })
-
--- Full-window terminal
-keymap("n", "<leader>tT", "<cmd>terminal<CR>", { desc = "Open full-window terminal" })
-
--- Better terminal navigation (excluding LazyGit)
-vim.api.nvim_create_autocmd("TermOpen", {
-	pattern = "*",
-	callback = function()
-		local is_lazygit = vim.fn.expand("%"):match("lazygit") ~= nil
-		if not is_lazygit then
-			keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", { buffer = true, noremap = true, silent = true })
-			keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", { buffer = true, noremap = true, silent = true })
-			keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", { buffer = true, noremap = true, silent = true })
-			keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", { buffer = true, noremap = true, silent = true })
-		end
-	end,
-})
+keymap("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Force quit" })
 
 -- ============================================================================
 -- UI TOGGLES
@@ -177,40 +110,3 @@ keymap("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrapping" 
 
 -- Toggle relative line numbers
 keymap("n", "<leader>ln", "<cmd>set relativenumber!<CR>", { desc = "Toggle relative line numbers" })
-
--- ============================================================================
--- LSP & DIAGNOSTICS
--- ============================================================================
-
--- Note: Most LSP and diagnostic keymaps are configured in lua/plugins/lsp.lua
--- Only keeping non-conflicting global diagnostic keymaps here
-keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
--- Removed <leader>df and <leader>dl to avoid conflicts with LSP config
-
--- ============================================================================
--- FILE EXPLORER
--- ============================================================================
-
--- Note: Neo-tree keymaps are configured in lua/plugins/neo-tree.lua
--- Removed duplicate <leader>e keymap to avoid conflicts
-
-
-
--- ============================================================================
--- DEBUGGING
--- ============================================================================
-
--- Debug keymaps (F-keys for quick access)
-keymap("n", "<F5>", function()
-	require("dap").continue()
-end, { desc = "Debug: Start/Continue" })
-keymap("n", "<F10>", function()
-	require("dap").step_over()
-end, { desc = "Debug: Step Over" })
-keymap("n", "<F11>", function()
-	require("dap").step_into()
-end, { desc = "Debug: Step Into" })
-keymap("n", "<F12>", function()
-	require("dap").step_out()
-end, { desc = "Debug: Step Out" })

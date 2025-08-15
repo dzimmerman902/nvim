@@ -1,30 +1,19 @@
--- ============================================================================
--- Debug Adapter Protocol (DAP) Configuration
--- ============================================================================
-
 return {
 	-- Core DAP plugin
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			-- Creates a beautiful debugger UI
 			"rcarriga/nvim-dap-ui",
-
-			-- Required dependency for nvim-dap-ui
 			"nvim-neotest/nvim-nio",
-
-			-- Installs the debug adapters for you
 			"williamboman/mason.nvim",
 			"jay-babu/mason-nvim-dap.nvim",
-
-			-- Add your own debuggers here
 			"leoluz/nvim-dap-go",
 		},
 		keys = function(_, keys)
 			local dap = require("dap")
 			local dapui = require("dapui")
+
 			return {
-				-- Basic debugging keymaps
 				{
 					"<leader>dB",
 					function()
@@ -54,29 +43,8 @@ return {
 				{ "<leader>ds", dap.session, desc = "Session" },
 				{
 					"<leader>dt",
-					function()
-						-- Force terminate with timeout
-						dap.terminate()
-						-- If termination takes too long, force close
-						vim.defer_fn(function()
-							if dap.session() then
-								dap.close()
-								dapui.close()
-							end
-						end, 2000) -- 2 second timeout
-					end,
-					desc = "Terminate (with timeout)"
-				},
-				{
-					"<leader>dT",
-					function()
-						-- Emergency force quit - immediately close everything
-						dap.close()
-						dapui.close()
-						-- Kill any remaining debug processes
-						vim.cmd("silent! !pkill -f js-debug")
-					end,
-					desc = "Force terminate (emergency)"
+					dap.terminate,
+					desc = "Terminate",
 				},
 				{ "<leader>dw", require("dap.ui.widgets").hover, desc = "Widgets" },
 
@@ -98,60 +66,39 @@ return {
 			local dapui = require("dapui")
 
 			require("mason-nvim-dap").setup({
-				-- Makes a best effort to setup the various debuggers with
-				-- reasonable debug configurations
 				automatic_installation = true,
-
-				-- You can provide additional configuration to the handlers,
-				-- see mason-nvim-dap README for more information
 				handlers = {},
-
-				-- You'll need to check that you have the required things installed
-				-- online, please don't ask me how to install them :)
 				ensure_installed = {
-					-- Update this to ensure that you have the debuggers for the langs you want
 					"js-debug-adapter",
 				},
 			})
 
-			-- Simple JavaScript/TypeScript debugging setup
-			-- This will work once js-debug-adapter is installed via Mason
-			dap.adapters["pwa-node"] = {
-				type = "server",
-				host = "localhost",
-				port = "${port}",
-				executable = {
-					command = "node",
-					args = {
-						vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
-						"${port}",
-					},
-				},
-				-- Add timeout settings for faster termination
-				options = {
-					initialize_timeout_sec = 5,
-					disconnect_timeout_sec = 2,
-				},
+			dap.adapters.node2 = {
+				type = "executable",
+				command = "node",
+				args = { os.getenv("HOME") .. "/dev/microsoft/vscode-node-debug2/out/src/nodeDebug.js" },
 			}
 
 			dap.configurations.javascript = {
 				{
-					type = "pwa-node",
+					name = "__tests__/index.js",
+					type = "node2",
 					request = "launch",
-					name = "Test",
 					program = "${workspaceFolder}/__tests__/index.js",
 					cwd = "${workspaceFolder}",
+          sourceMaps = true,
+          protocal = 'inspector',
 					console = "integratedTerminal",
 				},
 				{
-					type = "pwa-node",
+					type = "node2",
 					request = "launch",
 					name = "Launch file",
 					program = "${file}",
 					cwd = "${workspaceFolder}",
 				},
 				{
-					type = "pwa-node",
+					type = "node2",
 					request = "attach",
 					name = "Attach",
 					processId = require("dap.utils").pick_process,
@@ -161,10 +108,7 @@ return {
 
 			dap.configurations.typescript = dap.configurations.javascript
 
-			-- Dap UI setup
-			-- For more information, see |:help nvim-dap-ui|
 			dapui.setup({
-				-- Set icons to characters that are more likely to work in every terminal.
 				icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
 				controls = {
 					icons = {
@@ -232,36 +176,13 @@ return {
 			-- Improved termination handling
 			dap.listeners.before.event_terminated["dapui_config"] = function()
 				dapui.close()
-				-- Clear any lingering processes
-				vim.defer_fn(function()
-					if dap.session() then
-						dap.close()
-					end
-				end, 500)
 			end
 
 			dap.listeners.before.event_exited["dapui_config"] = function()
 				dapui.close()
-				-- Ensure clean exit
-				vim.defer_fn(function()
-					if dap.session() then
-						dap.close()
-					end
-				end, 500)
 			end
-
-			-- Install golang specific config
-			require("dap-go").setup()
 		end,
 	},
-
-	-- Virtual text for the debugger (disabled - shows grayed values inline)
-	-- {
-	-- 	"theHamsta/nvim-dap-virtual-text",
-	-- 	opts = {},
-	-- },
-
-	-- Mason integration for DAP
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		dependencies = "mason.nvim",

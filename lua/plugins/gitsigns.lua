@@ -1,7 +1,3 @@
--- ============================================================================
--- Git Integration Configuration
--- ============================================================================
-
 return {
 	-- Git signs
 	{
@@ -72,34 +68,5 @@ return {
 				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
 			end,
 		},
-	},
-
-	-- Lazygit integration with popup terminal
-	{
-		"kdheepak/lazygit.nvim",
-		cmd = "LazyGit",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" },
-		},
-		config = function()
-			-- Simple LazyGit configuration - let the plugin handle terminal mode
-			vim.g.lazygit_floating_window_winblend = 0
-			vim.g.lazygit_floating_window_scaling_factor = 0.9
-			vim.g.lazygit_use_neovim_remote = 1
-
-			-- Simple autocmd to ensure LazyGit starts in terminal mode
-			vim.api.nvim_create_autocmd("TermOpen", {
-				pattern = "*lazygit*",
-				callback = function()
-					-- Just disable UI elements, let LazyGit handle the rest
-					vim.opt_local.number = false
-					vim.opt_local.relativenumber = false
-					vim.opt_local.signcolumn = "no"
-				end,
-			})
-		end,
 	},
 }
