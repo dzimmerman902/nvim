@@ -136,3 +136,14 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Disable unused providers to reduce warnings
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+-- Thicker window separators
+opt.fillchars = {
+  vert = "█",     -- Thick vertical separator
+  horiz = "█",    -- Thick horizontal separator
+  verthoriz = "█", -- Intersection
+  vertleft = "█",
+  vertright = "█",
+  horizup = "█",
+  horizdown = "█",
+}

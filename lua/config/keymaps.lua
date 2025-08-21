@@ -22,6 +22,7 @@ keymap("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+keymap("n", "<leader>wd", "<C-w>q", { desc = "Delete/close current window" })
 
 -- Window navigation
 keymap("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
@@ -30,10 +31,10 @@ keymap("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Window resizing (Mac-friendly, repeatable with .)
-keymap("n", "<leader>rk", "<C-w>-", { desc = "Decrease window height" })
-keymap("n", "<leader>rj", "<C-w>+", { desc = "Increase window height" })
-keymap("n", "<leader>rh", "<C-w><", { desc = "Decrease window width" })
-keymap("n", "<leader>rl", "<C-w>>", { desc = "Increase window width" })
+keymap("n", "<C-Up>", "<C-w>+", { desc = "Increase window height" })
+keymap("n", "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
+keymap("n", "<C-Left>", "<C-w><", { desc = "Decrease window width" })
+keymap("n", "<C-Right>", "<C-w>>", { desc = "Increase window width" })
 
 -- ============================================================================
 -- TAB MANAGEMENT
@@ -99,7 +100,7 @@ keymap("i", "<C-s>", "<Esc><cmd>w<CR>a", { desc = "Save file and return to inser
 keymap("v", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
 
 -- Force quit
-keymap("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Force quit" })
+keymap("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Force quit" })
 
 -- ============================================================================
 -- UI TOGGLES
@@ -110,3 +111,31 @@ keymap("n", "<leader>lw", "<cmd>set wrap!<CR>", { desc = "Toggle line wrapping" 
 
 -- Toggle relative line numbers
 keymap("n", "<leader>ln", "<cmd>set relativenumber!<CR>", { desc = "Toggle relative line numbers" })
+
+-- ============================================================================
+-- TERMINAL
+-- ============================================================================
+
+-- keymap("t", "<esc>", [[<C-\><C-n>]], { buffer = 0 })
+-- keymap("t", "jk", [[<C-\><C-n>]], { buffer = 0 })
+-- keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { buffer = 0 })
+-- keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { buffer = 0 })
+-- keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { buffer = 0 })
+-- keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { buffer = 0 })
+-- keymap("t", "<C-w>", [[<C-\><C-n><C-w>]], { buffer = 0 })
+-- ============================================================================
+-- LSP DIAGNOSTICS
+-- ============================================================================
+
+-- Show diagnostics in floating window
+keymap("n", "<leader>of", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+
+-- Navigate diagnostics
+keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+
+-- Show all diagnostics in quickfix list
+keymap("n", "<leader>ol", vim.diagnostic.setqflist, { desc = "Open diagnostics quickfix list" })
+
+-- Reveal file in Finder (macOS)
+keymap("n", "<leader>rf", "<cmd>!open -R %<CR>", { desc = "Reveal file in Finder" })

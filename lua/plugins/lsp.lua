@@ -38,7 +38,7 @@ return {
 
       require("mason").setup({})
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "rust_analyzer" },
+        ensure_installed = { "lua_ls", "rust_analyzer", "volar", "ts_ls" },
         handlers = {
           function(server_name)
             require("lspconfig")[server_name].setup({})
