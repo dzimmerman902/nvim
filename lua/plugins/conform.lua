@@ -1,7 +1,3 @@
--- ============================================================================
--- Formatting Configuration
--- ============================================================================
-
 return {
 	-- Formatting
 	{
@@ -33,6 +29,7 @@ return {
 					svelte = { "prettier" },
 					css = { "prettier" },
 					html = { "prettier" },
+					vue = { "prettier" },
 					json = { "prettier" },
 					yaml = { "prettier" },
 					markdown = { "prettier" },
@@ -41,11 +38,6 @@ return {
 					lua = { "stylua" },
 					python = { "isort", "black" },
 					-- Removed rust and go formatters since they're not installed
-				},
-				format_on_save = {
-					lsp_fallback = true,
-					async = false,
-					timeout_ms = 1000,
 				},
 			})
 		end,

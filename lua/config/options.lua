@@ -84,7 +84,7 @@ opt.numberwidth = 4
 opt.mouse = "a"
 
 -- Time in milliseconds to wait for a mapped sequence to complete (user prefers shorter timeout)
-opt.timeoutlen = 250
+opt.timeoutlen = 500
 
 -- Enable persistent undo
 opt.undofile = true
@@ -136,3 +136,14 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Disable unused providers to reduce warnings
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+-- Thicker window separators
+opt.fillchars = {
+  vert = "█",     -- Thick vertical separator
+  horiz = "█",    -- Thick horizontal separator
+  verthoriz = "█", -- Intersection
+  vertleft = "█",
+  vertright = "█",
+  horizup = "█",
+  horizdown = "█",
+}
