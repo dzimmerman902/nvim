@@ -54,7 +54,45 @@ return {
 				{
 					"<leader>dR",
 					function()
+						local dapui = require("dapui")
 						dapui.close()
+						-- Force reset the layout by re-setting up with original config
+						dapui.setup({
+							icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
+							controls = {
+								icons = {
+									pause = "⏸",
+									play = "▶",
+									step_into = "⏎",
+									step_over = "⏭",
+									step_out = "⏮",
+									step_back = "b",
+									run_last = "▶▶",
+									terminate = "⏹",
+									disconnect = "⏏",
+								},
+							},
+							layouts = {
+								{
+									elements = {
+										{ id = "scopes", size = 0.25 },
+										{ id = "breakpoints", size = 0.25 },
+										{ id = "stacks", size = 0.25 },
+										{ id = "watches", size = 0.25 },
+									},
+									size = 40,
+									position = "left",
+								},
+								{
+									elements = {
+										"repl",
+										"console",
+									},
+									size = 0.25,
+									position = "bottom",
+								},
+							},
+						})
 						dapui.open()
 					end,
 					desc = "Reset DAP UI Layout",
@@ -86,8 +124,8 @@ return {
 					request = "launch",
 					program = "${workspaceFolder}/__tests__/index.js",
 					cwd = "${workspaceFolder}",
-          sourceMaps = true,
-          protocal = 'inspector',
+					sourceMaps = true,
+					protocal = "inspector",
 					console = "integratedTerminal",
 				},
 				{
