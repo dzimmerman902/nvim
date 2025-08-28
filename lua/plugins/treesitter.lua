@@ -43,9 +43,9 @@ return {
 					"ruby",
 					"sql",
 					"toml",
+					"terraform",
 				},
 			})
 		end,
 	},
 }
-

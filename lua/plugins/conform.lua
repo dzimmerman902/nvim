@@ -37,6 +37,7 @@ return {
 					liquid = { "prettier" },
 					lua = { "stylua" },
 					python = { "isort", "black" },
+					terraform = { "terraform_fmt" },
 					-- Removed rust and go formatters since they're not installed
 				},
 			})
