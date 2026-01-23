@@ -1,3 +1,5 @@
-return {{
-'vim-airline/vim-airline'
-}}
+return {
+	{
+		"vim-airline/vim-airline",
+	},
+}

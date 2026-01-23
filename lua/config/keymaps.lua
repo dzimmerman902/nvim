@@ -53,6 +53,9 @@ keymap("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in 
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Delete buffer but keep split window
+keymap("n", "<leader>bd", "<cmd>enew | bdelete #<CR>", { desc = "Delete buffer, keep split" })
+
 -- ============================================================================
 -- TEXT EDITING
 -- ============================================================================
@@ -139,3 +142,4 @@ keymap("n", "<leader>ol", vim.diagnostic.setqflist, { desc = "Open diagnostics q
 
 -- Reveal file in Finder (macOS)
 keymap("n", "<leader>rf", "<cmd>!open -R %<CR>", { desc = "Reveal file in Finder" })
+

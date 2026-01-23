@@ -36,6 +36,30 @@ return {
 				end,
 			})
 
+			require("lspconfig").sourcekit.setup({
+				cmd = { "sourcekit-lsp" },
+				filetypes = { "swift", "objective-c", "objective-cpp" },
+				root_markers = {
+					".git",
+					"compile_commands.json",
+					".sourcekit-lsp",
+					"Package.swift",
+				},
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+					textDocument = {
+						diagnostic = {
+							dynamicRegistration = true,
+							relatedDocumentSupport = true,
+						},
+					},
+				},
+			})
+
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
 				ensure_installed = { "lua_ls", "rust_analyzer", "volar", "ts_ls" },
@@ -56,6 +80,16 @@ return {
 									telemetry = {
 										enable = false,
 									},
+								},
+							},
+						})
+					end,
+					volar = function()
+						require("lspconfig").volar.setup({
+							filetypes = { "vue" },
+							init_options = {
+								typescript = {
+									tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
 								},
 							},
 						})
