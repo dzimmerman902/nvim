@@ -31,10 +31,10 @@ keymap("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 keymap("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Window resizing (Mac-friendly, repeatable with .)
-keymap("n", "<C-Up>", "<C-w>+", { desc = "Increase window height" })
-keymap("n", "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
-keymap("n", "<C-Left>", "<C-w><", { desc = "Decrease window width" })
-keymap("n", "<C-Right>", "<C-w>>", { desc = "Increase window width" })
+keymap("n", "<C-Up>", "5<C-w>+", { desc = "Increase window height" })
+keymap("n", "<C-Down>", "5<C-w>-", { desc = "Decrease window height" })
+keymap("n", "<C-Left>", "5<C-w><", { desc = "Decrease window width" })
+keymap("n", "<C-Right>", "5<C-w>>", { desc = "Increase window width" })
 
 -- ============================================================================
 -- TAB MANAGEMENT
