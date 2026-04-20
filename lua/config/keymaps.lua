@@ -43,7 +43,7 @@ keymap("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 keymap("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+keymap("n", "<leader>tF", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- ============================================================================
 -- BUFFER MANAGEMENT
@@ -119,13 +119,8 @@ keymap("n", "<leader>ln", "<cmd>set relativenumber!<CR>", { desc = "Toggle relat
 -- TERMINAL
 -- ============================================================================
 
--- keymap("t", "<esc>", [[<C-\><C-n>]], { buffer = 0 })
--- keymap("t", "jk", [[<C-\><C-n>]], { buffer = 0 })
--- keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { buffer = 0 })
--- keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { buffer = 0 })
--- keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { buffer = 0 })
--- keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { buffer = 0 })
--- keymap("t", "<C-w>", [[<C-\><C-n><C-w>]], { buffer = 0 })
+-- Exit terminal mode
+keymap("t", "<esc><esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 -- ============================================================================
 -- LSP DIAGNOSTICS
 -- ============================================================================

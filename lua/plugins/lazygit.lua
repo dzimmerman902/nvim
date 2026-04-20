@@ -18,5 +18,11 @@ return {
 		keys = {
 			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
+		config = function()
+			-- Configure lazygit to open files in the current nvim instance
+			vim.g.lazygit_floating_window_scaling_factor = 0.9
+			vim.g.lazygit_floating_window_border_chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+			vim.g.lazygit_use_neovim_remote = 1 -- Use neovim remote to open files
+		end,
 	},
 }

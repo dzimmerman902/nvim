@@ -10,6 +10,14 @@ return {
 				{ "<leader>sH", builtin.help_tags, desc = "[S]earch [H]elp", mode = "n" },
 				{ "<leader>sk", builtin.keymaps, desc = "[S]earch [K]eymaps", mode = "n" },
 				{ "<leader>sf", builtin.find_files, desc = "[S]earch [F]iles", mode = "n" },
+				{
+					"<leader>sF",
+					function()
+						builtin.find_files({ hidden = true, no_ignore = true })
+					end,
+					desc = "[S]earch [F]iles (all/hidden)",
+					mode = "n",
+				},
 				{ "<leader>ss", builtin.builtin, desc = "[S]earch [S]elect Telescope", mode = "n" },
 				{ "<leader>sw", builtin.grep_string, desc = "[S]earch current [W]ord", mode = "n" },
 				{ "<leader>sg", builtin.live_grep, desc = "[S]earch by [G]rep", mode = "n" },
