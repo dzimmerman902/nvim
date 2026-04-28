@@ -12,7 +12,25 @@ function M.get_env_var(var_name, env_file_path)
 	end
 
 	-- Fallback to reading from .env file
-	env_file_path = env_file_path or (vim.fn.getcwd() .. "/.env")
+	if not env_file_path then
+		-- Find workspace root by looking for common project markers
+		local current_file = vim.api.nvim_buf_get_name(0)
+		local current_dir = vim.fn.fnamemodify(current_file, ":h")
+
+		-- Look for project root markers
+		local root_markers = { ".git", ".gitignore", "package.json", "Cargo.toml", "go.mod", "pyproject.toml" }
+		local root_dir = vim.fs.find(root_markers, {
+			path = current_dir,
+			upward = true,
+		})[1]
+
+		if root_dir then
+			env_file_path = vim.fn.fnamemodify(root_dir, ":h") .. "/.env"
+		else
+			-- Fallback to current working directory
+			env_file_path = vim.fn.getcwd() .. "/.env"
+		end
+	end
 
 	if vim.fn.filereadable(env_file_path) == 1 then
 		local lines = vim.fn.readfile(env_file_path)

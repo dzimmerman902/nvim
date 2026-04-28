@@ -36,6 +36,30 @@ return {
 				end,
 			})
 
+			require("lspconfig").sourcekit.setup({
+				cmd = { "sourcekit-lsp" },
+				filetypes = { "swift", "objective-c", "objective-cpp" },
+				root_markers = {
+					".git",
+					"compile_commands.json",
+					".sourcekit-lsp",
+					"Package.swift",
+				},
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+					textDocument = {
+						diagnostic = {
+							dynamicRegistration = true,
+							relatedDocumentSupport = true,
+						},
+					},
+				},
+			})
+
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
 				ensure_installed = { "lua_ls", "rust_analyzer", "volar", "ts_ls" },
@@ -58,6 +82,34 @@ return {
 									},
 								},
 							},
+						})
+					end,
+					volar = function()
+						require("lspconfig").volar.setup({
+							filetypes = { "vue" },
+							init_options = {
+								vue = {
+									hybridMode = true,
+								},
+							},
+						})
+					end,
+					ts_ls = function()
+						local mason_registry = require("mason-registry")
+						local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+							.. "/node_modules/@vue/language-server"
+
+						require("lspconfig").ts_ls.setup({
+							init_options = {
+								plugins = {
+									{
+										name = "@vue/typescript-plugin",
+										location = vue_language_server_path,
+										languages = { "vue" },
+									},
+								},
+							},
+							filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 						})
 					end,
 				},

@@ -37,7 +37,10 @@ return {
 					liquid = { "prettier" },
 					lua = { "stylua" },
 					python = { "isort", "black" },
-					-- Removed rust and go formatters since they're not installed
+					terraform = { "terraform_fmt" },
+					sql = { "sqlfluff" },
+					swift = { "swift" },
+					xml = { "xmlformatter" },
 				},
 			})
 		end,
@@ -60,6 +63,8 @@ return {
 					"black", -- python formatter
 					"pylint", -- python linter
 					"eslint_d", -- js linter
+					"terraform_fmt", -- terraform formatter
+					"sql_formatter",
 				},
 			})
 		end,
