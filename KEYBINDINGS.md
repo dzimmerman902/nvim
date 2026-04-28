@@ -149,11 +149,18 @@
 | `<leader>td` | Normal          | Toggle deleted            |
 | `ih`         | Operator/Visual | Select hunk (text object) |
 
+## Git (Telescope)
+
+| Key          | Mode   | Description                               |
+| ------------ | ------ | ----------------------------------------- |
+| `<leader>gs` | Normal | Git status picker (changed files via TUI) |
+
 ## Git (LazyGit)
 
-| Key          | Mode   | Description  |
-| ------------ | ------ | ------------ |
-| `<leader>gg` | Normal | Open LazyGit |
+| Key          | Mode   | Description                   |
+| ------------ | ------ | ----------------------------- |
+| `<leader>gg` | Normal | Open LazyGit                  |
+| `<leader>gF` | Normal | Open LazyGit for current file |
 
 ## Terminal (ToggleTerm)
 

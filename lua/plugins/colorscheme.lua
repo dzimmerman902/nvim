@@ -1,27 +1,23 @@
 return {
-	-- {
-	-- 	"jacoborus/tender.vim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	--    config = function()
-	-- 		vim.cmd([[colorscheme tender]])
-	-- 	end,
-	-- },
-	-- {
-	-- 	"bluz71/vim-moonfly-colors",
-	-- 	name = "moonfly",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.cmd([[colorscheme moonfly]])
-	-- 	end,
-	-- },
+	-- Galaxy colorscheme (requires ColorV)
 	{
-		"folke/tokyonight.nvim",
+		"gu-fan/galaxy.vim",
+		dependencies = { "gu-fan/colorv.vim" },
 		lazy = false,
 		priority = 1000,
-			config = function()
-				vim.cmd([[colorscheme tokyonight-night]])
-			end,
+		config = function()
+			vim.cmd.colorscheme("galaxy")
+		end,
+	},
+
+	-- Tokyo Night (kept as an optional alternative, disabled by default)
+	{
+		"folke/tokyonight.nvim",
+		enabled = false,
+		lazy = false,
+		priority = 900,
+		config = function()
+			vim.cmd.colorscheme("tokyonight-night")
+		end,
 	},
 }
