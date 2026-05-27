@@ -17,11 +17,14 @@ return {
 	-- 	end,
 	-- },
 	{
-		"folke/tokyonight.nvim",
+		"EdenEast/nightfox.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd([[colorscheme tokyonight-night]])
+			require("nightfox").setup({
+				options = { transparent = true },
+			})
+			vim.cmd([[colorscheme nordfox]])
 		end,
 	},
 }

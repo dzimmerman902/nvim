@@ -1,29 +1,22 @@
 return {
-	{ "mason-org/mason.nvim", tag = "v1.11.0", pin = true },
-	{ "mason-org/mason-lspconfig.nvim", tag = "v1.32.0", pin = true },
+	{ "mason-org/mason.nvim", tag = "v2.2.1", pin = true },
+	{ "mason-org/mason-lspconfig.nvim", tag = "v2.2.0", pin = true },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
 	{
 		"neovim/nvim-lspconfig",
-		tag = "v1.8.0",
+		tag = "v2.8.0",
 		pin = true,
 		config = function()
-			-- Add cmp_nvim_lsp capabilities settings to lspconfig
-			-- This should be executed before you configure any language server
-			local lspconfig_defaults = require("lspconfig").util.default_config
-			lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-				"force",
-				lspconfig_defaults.capabilities,
-				require("cmp_nvim_lsp").default_capabilities()
-			)
+			-- Default capabilities for all servers
+			vim.lsp.config("*", {
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			})
 
-			-- This is where you enable features that only work
-			-- if there is a language server active in the file
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
 					local opts = { buffer = event.buf }
-
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
@@ -36,6 +29,7 @@ return {
 				end,
 			})
 
+			-- sourcekit is a system tool, not mason-managed
 			require("lspconfig").sourcekit.setup({
 				cmd = { "sourcekit-lsp" },
 				filetypes = { "swift", "objective-c", "objective-cpp" },
@@ -60,59 +54,40 @@ return {
 				},
 			})
 
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = { globals = { "vim" } },
+						runtime = { version = "LuaJIT" },
+						telemetry = { enable = false },
+					},
+				},
+			})
+
+			vim.lsp.config("vue_ls", {
+				filetypes = { "vue" },
+				init_options = {
+					vue = { hybridMode = true },
+				},
+			})
+
+			vim.lsp.config("ts_ls", {
+				init_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vim.fn.stdpath("data")
+								.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+							languages = { "vue" },
+						},
+					},
+				},
+				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+			})
+
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "volar", "ts_ls" },
-				handlers = {
-					function(server_name)
-						require("lspconfig")[server_name].setup({})
-					end,
-					lua_ls = function()
-						require("lspconfig").lua_ls.setup({
-							settings = {
-								Lua = {
-									diagnostics = {
-										globals = { "vim" },
-									},
-									runtime = {
-										version = "LuaJIT",
-									},
-									telemetry = {
-										enable = false,
-									},
-								},
-							},
-						})
-					end,
-					volar = function()
-						require("lspconfig").volar.setup({
-							filetypes = { "vue" },
-							init_options = {
-								vue = {
-									hybridMode = true,
-								},
-							},
-						})
-					end,
-					ts_ls = function()
-						local mason_registry = require("mason-registry")
-						local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-							.. "/node_modules/@vue/language-server"
-
-						require("lspconfig").ts_ls.setup({
-							init_options = {
-								plugins = {
-									{
-										name = "@vue/typescript-plugin",
-										location = vue_language_server_path,
-										languages = { "vue" },
-									},
-								},
-							},
-							filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-						})
-					end,
-				},
+				ensure_installed = { "lua_ls", "rust_analyzer", "vue_ls", "ts_ls" },
 			})
 		end,
 	},
