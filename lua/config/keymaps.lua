@@ -137,4 +137,3 @@ keymap("n", "<leader>ol", vim.diagnostic.setqflist, { desc = "Open diagnostics q
 
 -- Reveal file in Finder (macOS)
 keymap("n", "<leader>rf", "<cmd>!open -R %<CR>", { desc = "Reveal file in Finder" })
-
