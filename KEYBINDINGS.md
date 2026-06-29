@@ -202,6 +202,7 @@
 | `<leader>du` | Normal        | Toggle DAP UI             |
 | `<leader>de` | Normal/Visual | Eval expression           |
 | `<leader>dR` | Normal        | Reset DAP UI layout       |
+| `<F7>`       | Normal        | Toggle DAP UI             |
 
 ## Completion (nvim-cmp)
 
