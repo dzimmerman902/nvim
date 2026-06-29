@@ -1,15 +1,25 @@
 local prettier_fts = {
-	"javascript", "typescript", "javascriptreact", "typescriptreact",
-	"svelte", "css", "html", "vue", "json", "yaml", "markdown",
-	"graphql", "liquid",
+	"javascript",
+	"typescript",
+	"javascriptreact",
+	"typescriptreact",
+	"svelte",
+	"css",
+	"html",
+	"vue",
+	"json",
+	"yaml",
+	"markdown",
+	"graphql",
+	"liquid",
 }
 
 local formatters_by_ft = {
-	lua      = { "stylua" },
-	python   = { "isort", "black" },
+	lua = { "stylua" },
+	python = { "isort", "black" },
 	terraform = { "terraform_fmt" },
-	sql      = { "sqlfluff" },
-	xml      = { "xmlformatter" },
+	sql = { "sqlfluff" },
+	xml = { "xmlformatter" },
 }
 
 for _, ft in ipairs(prettier_fts) do
@@ -26,7 +36,9 @@ return {
 				function()
 					local conform = require("conform")
 					local formatters = conform.list_formatters()
-					local available = vim.tbl_filter(function(f) return f.available end, formatters)
+					local available = vim.tbl_filter(function(f)
+						return f.available
+					end, formatters)
 
 					if #available == 0 then
 						vim.notify("No formatter available for filetype: " .. vim.bo.filetype, vim.log.levels.WARN)
