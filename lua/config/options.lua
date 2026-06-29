@@ -146,6 +146,12 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- Clear LSP log on startup if it exceeds 10MB
+local lsp_log = vim.fn.stdpath("state") .. "/lsp.log"
+if vim.fn.getfsize(lsp_log) > 10 * 1024 * 1024 then
+	vim.fn.writefile({}, lsp_log)
+end
+
 -- Thicker window separators
 opt.fillchars = {
   vert = "█",     -- Thick vertical separator
