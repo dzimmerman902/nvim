@@ -85,6 +85,13 @@
 | `<leader>lw` | Normal | Toggle line wrapping         |
 | `<leader>ln` | Normal | Toggle relative line numbers |
 
+## Words (Snacks)
+
+| Key  | Mode   | Description            |
+| ---- | ------ | ---------------------- |
+| `]]` | Normal | Next word reference    |
+| `[[` | Normal | Previous word reference |
+
 ## LSP
 
 | Key          | Mode   | Description           |
@@ -244,3 +251,40 @@
 | ------------ | ------ | ------------------------------ |
 | `<leader>mr` | Normal | Toggle in-editor render        |
 | `<leader>mb` | Normal | Toggle browser preview (peek)  |
+
+## Text Objects (nvim-various-textobjs)
+
+> Use with any operator: `d`, `c`, `y`, `v`, etc. Most support `i` (inner) and `a` (outer).
+
+| Key      | Description                                      |
+| -------- | ------------------------------------------------ |
+| `iS`/`aS` | Subword (camelCase, snake_case, kebab-case segment) |
+| `ii`/`ai` | Indentation block                               |
+| `aI`     | Indentation block including surrounding lines    |
+| `R`      | Rest of indentation downwards                    |
+| `ig`/`ag` | Greedy outer indentation (includes blank lines) |
+| `iq`/`aq` | Any quote (`"`, `'`, `` ` ``)                   |
+| `io`/`ao` | Any bracket (`()`, `[]`, `{}`)                  |
+| `iv`/`av` | Value in key-value pair or assignment            |
+| `ik`/`ak` | Key in key-value pair or assignment              |
+| `in`/`an` | Number                                           |
+| `im`/`am` | Chain member (`.foo` or `:foo`)                  |
+| `iF`/`aF` | Filepath                                         |
+| `iD`/`aD` | Double square brackets `[[]]`                    |
+| `i#`/`a#` | Color (HEX, RGB, HSL, ANSI)                     |
+| `i,`/`a,` | Function argument                                |
+| `iz`/`az` | Closed fold                                      |
+| `iN`/`aN` | Notebook cell (`# %%`)                           |
+| `i_`/`a_` | Current line (characterwise)                     |
+| `C`      | To next closing bracket                          |
+| `Q`      | To next quotation mark                           |
+| `L`      | URL (forward-seeking)                            |
+| `r`      | Rest of paragraph                                |
+| `gG`     | Entire buffer                                    |
+| `n`      | Near end of line                                 |
+| `gw`     | All visible lines in window                      |
+| `gW`     | Cursor to last visible line                      |
+| `g;`     | Last changed/yanked/pasted text                  |
+| `!`      | Next diagnostic                                  |
+| `\|`     | Column downwards                                 |
+| `.`      | Emoji or Nerd Font glyph                         |
