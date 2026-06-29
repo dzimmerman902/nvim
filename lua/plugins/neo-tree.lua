@@ -5,11 +5,26 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
-			"nvim-tree/nvim-web-devicons", -- optional, but recommended
+			"nvim-tree/nvim-web-devicons",
 		},
-		lazy = false, -- neo-tree will lazily load itself
 		keys = {
-			{ "<leader>e", "<cmd>Neotree toggle current<CR>", desc = "Toggle directory in current window" },
+			{ "<leader>e", "<cmd>Neotree toggle current<CR>", desc = "Toggle file explorer" },
+			{ "<leader>E", "<cmd>Neotree reveal<CR>", desc = "Reveal current file in explorer" },
+		},
+		opts = {
+			window = {
+				width = 35,
+			},
+			filesystem = {
+				follow_current_file = {
+					enabled = true,
+				},
+				filtered_items = {
+					visible = false, -- hidden by default, toggle with H
+					hide_dotfiles = false,
+					hide_gitignored = false,
+				},
+			},
 		},
 	},
 }

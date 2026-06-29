@@ -126,9 +126,11 @@
 
 ## File Explorer (Neo-tree)
 
-| Key         | Mode   | Description          |
-| ----------- | ------ | -------------------- |
-| `<leader>e` | Normal | Toggle file explorer |
+| Key          | Mode   | Description                        |
+| ------------ | ------ | ---------------------------------- |
+| `<leader>e`  | Normal | Toggle file explorer               |
+| `<leader>E`  | Normal | Reveal current file in explorer    |
+| `H`          | Neo-tree | Toggle hidden/gitignored files   |
 
 ## Git (Gitsigns)
 
