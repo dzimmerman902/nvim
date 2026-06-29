@@ -3,17 +3,16 @@
 -- ============================================================================
 
 local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 -- ============================================================================
 -- GENERAL KEYMAPS
 -- ============================================================================
 
 -- Clear search highlights
-keymap("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights" })
 
 -- Delete single character without copying into register
-keymap("n", "x", '"_x', opts)
+keymap("n", "x", '"_x', { silent = true, desc = "Delete char without yanking" })
 
 -- ============================================================================
 -- WINDOW MANAGEMENT
@@ -50,8 +49,8 @@ keymap("n", "<leader>tF", "<cmd>tabnew %<CR>", { desc = "Open current buffer in 
 -- ============================================================================
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", "<cmd>bnext<CR>", { silent = true, desc = "Next buffer" })
+keymap("n", "<S-h>", "<cmd>bprevious<CR>", { silent = true, desc = "Previous buffer" })
 
 -- Delete buffer but keep split window
 keymap("n", "<leader>bd", "<cmd>enew | bdelete #<CR>", { desc = "Delete buffer, keep split" })
@@ -61,37 +60,37 @@ keymap("n", "<leader>bd", "<cmd>enew | bdelete #<CR>", { desc = "Delete buffer, 
 -- ============================================================================
 
 -- Move text up and down
-keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
-keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
+keymap("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
 
 -- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+keymap("v", "<", "<gv", { silent = true, desc = "Indent left" })
+keymap("v", ">", ">gv", { silent = true, desc = "Indent right" })
 
 -- Keep cursor centered when scrolling
-keymap("n", "<C-d>", "<C-d>zz", opts)
-keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "<C-d>", "<C-d>zz", { silent = true, desc = "Scroll down centered" })
+keymap("n", "<C-u>", "<C-u>zz", { silent = true, desc = "Scroll up centered" })
 
 -- Keep search terms in the middle
-keymap("n", "n", "nzzzv", opts)
-keymap("n", "N", "Nzzzv", opts)
+keymap("n", "n", "nzzzv", { silent = true, desc = "Next search result centered" })
+keymap("n", "N", "Nzzzv", { silent = true, desc = "Prev search result centered" })
 
 -- Better paste
-keymap("v", "p", '"_dP', opts)
+keymap("v", "p", '"_dP', { silent = true, desc = "Paste without yanking selection" })
 
 -- ============================================================================
 -- INSERT MODE
 -- ============================================================================
 
 -- Exit insert mode with jk or kj
-keymap("i", "jk", "<ESC>", opts)
-keymap("i", "kj", "<ESC>", opts)
+keymap("i", "jk", "<ESC>", { silent = true, desc = "Exit insert mode" })
+keymap("i", "kj", "<ESC>", { silent = true, desc = "Exit insert mode" })
 
 -- Insert mode navigation
-keymap("i", "<C-h>", "<Left>", opts)
-keymap("i", "<C-j>", "<Down>", opts)
-keymap("i", "<C-k>", "<Up>", opts)
-keymap("i", "<C-l>", "<Right>", opts)
+keymap("i", "<C-h>", "<Left>", { silent = true, desc = "Move left" })
+keymap("i", "<C-j>", "<Down>", { silent = true, desc = "Move down" })
+keymap("i", "<C-k>", "<Up>", { silent = true, desc = "Move up" })
+keymap("i", "<C-l>", "<Right>", { silent = true, desc = "Move right" })
 
 -- ============================================================================
 -- FILE OPERATIONS
@@ -121,6 +120,7 @@ keymap("n", "<leader>ln", "<cmd>set relativenumber!<CR>", { desc = "Toggle relat
 
 -- Exit terminal mode
 keymap("t", "<esc><esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
 -- ============================================================================
 -- LSP DIAGNOSTICS
 -- ============================================================================
