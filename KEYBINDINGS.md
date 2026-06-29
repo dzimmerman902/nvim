@@ -173,17 +173,10 @@
 
 ## Terminal (ToggleTerm)
 
-| Key            | Mode          | Description                   |
-| -------------- | ------------- | ----------------------------- |
-| `Ctrl+\`       | Normal/Insert | Toggle terminal               |
-| `<leader>tf`   | Normal        | Float terminal                |
-| `<leader>th`   | Normal        | Horizontal terminal           |
-| `<leader>tv`   | Normal        | Vertical terminal             |
-| `<leader>ts`   | Normal        | Send current line to terminal |
-| `<leader>t1-9` | Normal        | Open/switch to terminal 1-9   |
-| `<leader>ta`   | Normal        | Toggle all terminals          |
-| `Ctrl+1-5`     | Terminal      | Switch to terminal 1-5        |
-| `Ctrl+h/j/k/l` | Terminal      | Navigate between windows      |
+| Key             | Mode     | Description                        |
+| --------------- | -------- | ---------------------------------- |
+| `Ctrl+\`        | Normal   | Toggle terminal                    |
+| `Ctrl+h/j/k/l`  | Terminal | Navigate to adjacent window        |
 
 ## Debugging (DAP)
 
