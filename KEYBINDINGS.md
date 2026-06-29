@@ -235,6 +235,7 @@
 
 ## Markdown
 
-| Key          | Mode   | Description      |
-| ------------ | ------ | ---------------- |
-| `<leader>mp` | Normal | Markdown Preview |
+| Key          | Mode   | Description                    |
+| ------------ | ------ | ------------------------------ |
+| `<leader>mr` | Normal | Toggle in-editor render        |
+| `<leader>mb` | Normal | Toggle browser preview (peek)  |
