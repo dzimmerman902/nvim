@@ -12,7 +12,7 @@ return {
 				changedelete = { text = "~" },
 			},
 			on_attach = function(bufnr)
-				local gs = package.loaded.gitsigns
+				local gs = require("gitsigns")
 
 				local function map(mode, l, r, opts)
 					opts = opts or {}
@@ -51,22 +51,21 @@ return {
 					gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 				end, { desc = "Reset hunk" })
 				map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage buffer" })
-				map("n", "<leader>ga", gs.stage_buffer, { desc = "Git: Stage current buffer" })
 				map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
 				map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset buffer" })
 				map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview hunk" })
 				map("n", "<leader>hb", function()
 					gs.blame_line({ full = true })
 				end, { desc = "Blame line" })
-				map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle line blame" })
 				map("n", "<leader>hd", gs.diffthis, { desc = "Diff against index" })
 				map("n", "<leader>hD", function()
 					gs.diffthis("~")
 				end, { desc = "Diff against last commit" })
-				map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle deleted" })
+				map("n", "<leader>gb", gs.toggle_current_line_blame, { desc = "Toggle line blame" })
+				map("n", "<leader>gd", gs.toggle_deleted, { desc = "Toggle deleted" })
 
 				-- Text object
-				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
+				map({ "o", "x" }, "ih", "<cmd>Gitsigns select_hunk<CR>", { desc = "Select hunk" })
 			end,
 		},
 	},

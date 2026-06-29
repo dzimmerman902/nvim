@@ -145,8 +145,8 @@
 | `<leader>hb` | Normal          | Blame line                |
 | `<leader>hd` | Normal          | Diff against index        |
 | `<leader>hD` | Normal          | Diff against last commit  |
-| `<leader>tb` | Normal          | Toggle line blame         |
-| `<leader>td` | Normal          | Toggle deleted            |
+| `<leader>gb` | Normal          | Toggle line blame         |
+| `<leader>gd` | Normal          | Toggle deleted            |
 | `ih`         | Operator/Visual | Select hunk (text object) |
 
 ## Git (Telescope)
