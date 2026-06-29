@@ -218,14 +218,20 @@
 | ----------- | ------------- | ------------------------ |
 | `<leader>f` | Normal/Visual | Format file or selection |
 
-## Augment AI
+## Claude Code (AI)
 
-| Key          | Mode          | Description         |
-| ------------ | ------------- | ------------------- |
-| `<leader>ac` | Normal/Visual | Augment Chat        |
-| `<leader>an` | Normal/Visual | Augment Chat New    |
-| `<leader>at` | Normal/Visual | Augment Chat Toggle |
-| `<leader>as` | Normal/Visual | Augment Status      |
+| Key          | Mode   | Description                          |
+| ------------ | ------ | ------------------------------------ |
+| `<leader>ac` | Normal | Toggle Claude                        |
+| `<leader>af` | Normal | Focus Claude                         |
+| `<leader>ar` | Normal | Resume Claude session                |
+| `<leader>aC` | Normal | Continue Claude session              |
+| `<leader>am` | Normal | Select Claude model                  |
+| `<leader>ab` | Normal | Add current buffer to context        |
+| `<leader>as` | Visual | Send selection to Claude             |
+| `<leader>as` | Normal | Add file (in neo-tree)               |
+| `<leader>aa` | Normal | Accept diff                          |
+| `<leader>ad` | Normal | Deny diff                            |
 
 ## Markdown
 
