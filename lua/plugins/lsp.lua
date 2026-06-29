@@ -29,8 +29,7 @@ return {
 				end,
 			})
 
-			-- sourcekit is a system tool, not mason-managed
-			require("lspconfig").sourcekit.setup({
+			vim.lsp.config("sourcekit", {
 				cmd = { "sourcekit-lsp" },
 				filetypes = { "swift", "objective-c", "objective-cpp" },
 				root_markers = {
@@ -89,7 +88,7 @@ return {
 			require("mason-lspconfig").setup({
 			ensure_installed = { "lua_ls", "rust_analyzer" },
 			})
-			vim.lsp.enable({ "lua_ls", "rust_analyzer", "vue_ls", "ts_ls" })
+			vim.lsp.enable({ "lua_ls", "rust_analyzer", "vue_ls", "ts_ls", "sourcekit" })
 		end,
 	},
 }
