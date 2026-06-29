@@ -1,5 +1,5 @@
 local dap = require("dap")
-local js_debug_path = vim.fn.expand("~/.local/share/nvim/dap/vscode-js-debug/out/src/dapDebugServer.js")
+local js_debug_path = vim.fn.expand("~/.local/share/nvim/dap/vscode-js-debug/dist/src/dapDebugServer.js")
 
 dap.adapters["pwa-node"] = {
 	type = "server",
@@ -8,6 +8,9 @@ dap.adapters["pwa-node"] = {
 	executable = {
 		command = "node",
 		args = { js_debug_path, "${port}" },
+	},
+	options = {
+		initialize_timeout_sec = 10,
 	},
 }
 

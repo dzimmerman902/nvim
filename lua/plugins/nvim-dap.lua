@@ -93,7 +93,15 @@ return {
 				{ "<leader>dp", dap.pause,                           desc = "Pause" },
 				{ "<leader>dr", dap.repl.toggle,                     desc = "Toggle REPL" },
 				{ "<leader>ds", dap.session,                         desc = "Session" },
-				{ "<leader>dt", dap.terminate,                       desc = "Terminate" },
+				{
+					"<leader>dt",
+					function()
+						dap.terminate()
+						dap.disconnect({ terminateDebuggee = true })
+						dapui.close()
+					end,
+					desc = "Terminate",
+				},
 				{ "<leader>dw", require("dap.ui.widgets").hover,     desc = "Widgets" },
 				{ "<leader>du", dapui.toggle,                        desc = "DAP UI" },
 				{ "<leader>de", dapui.eval,                          desc = "Eval", mode = { "n", "v" } },
