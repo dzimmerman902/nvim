@@ -205,14 +205,16 @@
 
 ## Completion (nvim-cmp)
 
-| Key      | Mode   | Description             |
-| -------- | ------ | ----------------------- |
-| `Ctrl+p` | Insert | Select previous item    |
-| `Ctrl+n` | Insert | Select next item        |
-| `Ctrl+y` | Insert | Confirm completion      |
-| `Ctrl+e` | Insert | Trigger completion menu |
-| `Ctrl+u` | Insert | Scroll docs up          |
-| `Ctrl+d` | Insert | Scroll docs down        |
+| Key        | Mode          | Description                        |
+| ---------- | ------------- | ---------------------------------- |
+| `Ctrl+p`   | Insert        | Select previous item               |
+| `Ctrl+n`   | Insert        | Select next item                   |
+| `Ctrl+y`   | Insert        | Confirm completion                 |
+| `Ctrl+e`   | Insert        | Trigger completion menu            |
+| `Ctrl+b`   | Insert        | Scroll docs up                     |
+| `Ctrl+f`   | Insert        | Scroll docs down                   |
+| `Tab`      | Insert/Select | Next item or expand snippet        |
+| `Shift+Tab`| Insert/Select | Previous item or jump back snippet |
 
 ## Formatting (Conform)
 
