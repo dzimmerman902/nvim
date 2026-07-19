@@ -121,6 +121,12 @@ keymap("n", "<leader>ln", "<cmd>set relativenumber!<CR>", { desc = "Toggle relat
 -- Exit terminal mode
 keymap("t", "<esc><esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
+-- Window navigation from terminal mode (e.g. Claude chat)
+keymap("t", "<C-h>", [[<C-\><C-n><C-w>h]], { desc = "Move to left window" })
+keymap("t", "<C-j>", [[<C-\><C-n><C-w>j]], { desc = "Move to bottom window" })
+keymap("t", "<C-k>", [[<C-\><C-n><C-w>k]], { desc = "Move to top window" })
+keymap("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Move to right window" })
+
 -- ============================================================================
 -- LSP DIAGNOSTICS
 -- ============================================================================

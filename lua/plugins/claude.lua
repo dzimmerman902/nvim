@@ -4,7 +4,7 @@ return {
 		dependencies = { "folke/snacks.nvim" },
 		opts = {
 			-- Required because claude is installed locally via migrate-installer, not globally
-			terminal_cmd = "~/.local/bin/claude",
+			terminal_cmd = vim.fn.expand("~/.local/bin/claude"),
 		},
 		config = true,
 		cmd = {

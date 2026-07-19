@@ -23,4 +23,12 @@ dap.configurations.lua = {
 		program = { lua = "lua", file = "${file}" },
 		args = {},
 	},
+	{
+		type = "local-lua",
+		request = "launch",
+		name = "Debug LOVE2D project",
+		cwd = "${workspaceFolder}",
+		program = { command = "love" },
+		args = { "${workspaceFolder}" },
+	},
 }
