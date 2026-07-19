@@ -85,6 +85,13 @@
 | `<leader>lw` | Normal | Toggle line wrapping         |
 | `<leader>ln` | Normal | Toggle relative line numbers |
 
+## Words (Snacks)
+
+| Key  | Mode   | Description            |
+| ---- | ------ | ---------------------- |
+| `]]` | Normal | Next word reference    |
+| `[[` | Normal | Previous word reference |
+
 ## LSP
 
 | Key          | Mode   | Description           |
@@ -126,9 +133,11 @@
 
 ## File Explorer (Neo-tree)
 
-| Key         | Mode   | Description          |
-| ----------- | ------ | -------------------- |
-| `<leader>e` | Normal | Toggle file explorer |
+| Key          | Mode   | Description                        |
+| ------------ | ------ | ---------------------------------- |
+| `<leader>e`  | Normal | Toggle file explorer               |
+| `<leader>E`  | Normal | Reveal current file in explorer    |
+| `H`          | Neo-tree | Toggle hidden/gitignored files   |
 
 ## Git (Gitsigns)
 
@@ -145,8 +154,8 @@
 | `<leader>hb` | Normal          | Blame line                |
 | `<leader>hd` | Normal          | Diff against index        |
 | `<leader>hD` | Normal          | Diff against last commit  |
-| `<leader>tb` | Normal          | Toggle line blame         |
-| `<leader>td` | Normal          | Toggle deleted            |
+| `<leader>gb` | Normal          | Toggle line blame         |
+| `<leader>gd` | Normal          | Toggle deleted            |
 | `ih`         | Operator/Visual | Select hunk (text object) |
 
 ## Git (Telescope)
@@ -164,17 +173,10 @@
 
 ## Terminal (ToggleTerm)
 
-| Key            | Mode          | Description                   |
-| -------------- | ------------- | ----------------------------- |
-| `Ctrl+\`       | Normal/Insert | Toggle terminal               |
-| `<leader>tf`   | Normal        | Float terminal                |
-| `<leader>th`   | Normal        | Horizontal terminal           |
-| `<leader>tv`   | Normal        | Vertical terminal             |
-| `<leader>ts`   | Normal        | Send current line to terminal |
-| `<leader>t1-9` | Normal        | Open/switch to terminal 1-9   |
-| `<leader>ta`   | Normal        | Toggle all terminals          |
-| `Ctrl+1-5`     | Terminal      | Switch to terminal 1-5        |
-| `Ctrl+h/j/k/l` | Terminal      | Navigate between windows      |
+| Key             | Mode     | Description                        |
+| --------------- | -------- | ---------------------------------- |
+| `Ctrl+\`        | Normal   | Toggle terminal                    |
+| `Ctrl+h/j/k/l`  | Terminal | Navigate to adjacent window        |
 
 ## Debugging (DAP)
 
@@ -200,17 +202,20 @@
 | `<leader>du` | Normal        | Toggle DAP UI             |
 | `<leader>de` | Normal/Visual | Eval expression           |
 | `<leader>dR` | Normal        | Reset DAP UI layout       |
+| `<F7>`       | Normal        | Toggle DAP UI             |
 
 ## Completion (nvim-cmp)
 
-| Key      | Mode   | Description             |
-| -------- | ------ | ----------------------- |
-| `Ctrl+p` | Insert | Select previous item    |
-| `Ctrl+n` | Insert | Select next item        |
-| `Ctrl+y` | Insert | Confirm completion      |
-| `Ctrl+e` | Insert | Trigger completion menu |
-| `Ctrl+u` | Insert | Scroll docs up          |
-| `Ctrl+d` | Insert | Scroll docs down        |
+| Key        | Mode          | Description                        |
+| ---------- | ------------- | ---------------------------------- |
+| `Ctrl+p`   | Insert        | Select previous item               |
+| `Ctrl+n`   | Insert        | Select next item                   |
+| `Ctrl+y`   | Insert        | Confirm completion                 |
+| `Ctrl+e`   | Insert        | Trigger completion menu            |
+| `Ctrl+b`   | Insert        | Scroll docs up                     |
+| `Ctrl+f`   | Insert        | Scroll docs down                   |
+| `Tab`      | Insert/Select | Next item or expand snippet        |
+| `Shift+Tab`| Insert/Select | Previous item or jump back snippet |
 
 ## Formatting (Conform)
 
@@ -218,17 +223,61 @@
 | ----------- | ------------- | ------------------------ |
 | `<leader>f` | Normal/Visual | Format file or selection |
 
-## Augment AI
+## Claude Code (AI)
 
-| Key          | Mode          | Description         |
-| ------------ | ------------- | ------------------- |
-| `<leader>ac` | Normal/Visual | Augment Chat        |
-| `<leader>an` | Normal/Visual | Augment Chat New    |
-| `<leader>at` | Normal/Visual | Augment Chat Toggle |
-| `<leader>as` | Normal/Visual | Augment Status      |
+| Key          | Mode   | Description                          |
+| ------------ | ------ | ------------------------------------ |
+| `<leader>ac` | Normal | Toggle Claude                        |
+| `<leader>af` | Normal | Focus Claude                         |
+| `<leader>ar` | Normal | Resume Claude session                |
+| `<leader>aC` | Normal | Continue Claude session              |
+| `<leader>am` | Normal | Select Claude model                  |
+| `<leader>ab` | Normal | Add current buffer to context        |
+| `<leader>as` | Visual | Send selection to Claude             |
+| `<leader>as` | Normal | Add file (in neo-tree)               |
+| `<leader>aa` | Normal | Accept diff                          |
+| `<leader>ad` | Normal | Deny diff                            |
 
 ## Markdown
 
-| Key          | Mode   | Description      |
-| ------------ | ------ | ---------------- |
-| `<leader>mp` | Normal | Markdown Preview |
+| Key          | Mode   | Description                    |
+| ------------ | ------ | ------------------------------ |
+| `<leader>mr` | Normal | Toggle in-editor render        |
+| `<leader>mb` | Normal | Toggle browser preview (peek)  |
+
+## Text Objects (nvim-various-textobjs)
+
+> Use with any operator: `d`, `c`, `y`, `v`, etc. Most support `i` (inner) and `a` (outer).
+
+| Key      | Description                                      |
+| -------- | ------------------------------------------------ |
+| `iS`/`aS` | Subword (camelCase, snake_case, kebab-case segment) |
+| `ii`/`ai` | Indentation block                               |
+| `aI`     | Indentation block including surrounding lines    |
+| `R`      | Rest of indentation downwards                    |
+| `ig`/`ag` | Greedy outer indentation (includes blank lines) |
+| `iq`/`aq` | Any quote (`"`, `'`, `` ` ``)                   |
+| `io`/`ao` | Any bracket (`()`, `[]`, `{}`)                  |
+| `iv`/`av` | Value in key-value pair or assignment            |
+| `ik`/`ak` | Key in key-value pair or assignment              |
+| `in`/`an` | Number                                           |
+| `im`/`am` | Chain member (`.foo` or `:foo`)                  |
+| `iF`/`aF` | Filepath                                         |
+| `iD`/`aD` | Double square brackets `[[]]`                    |
+| `i#`/`a#` | Color (HEX, RGB, HSL, ANSI)                     |
+| `i,`/`a,` | Function argument                                |
+| `iz`/`az` | Closed fold                                      |
+| `iN`/`aN` | Notebook cell (`# %%`)                           |
+| `i_`/`a_` | Current line (characterwise)                     |
+| `C`      | To next closing bracket                          |
+| `Q`      | To next quotation mark                           |
+| `L`      | URL (forward-seeking)                            |
+| `r`      | Rest of paragraph                                |
+| `gG`     | Entire buffer                                    |
+| `n`      | Near end of line                                 |
+| `gw`     | All visible lines in window                      |
+| `gW`     | Cursor to last visible line                      |
+| `g;`     | Last changed/yanked/pasted text                  |
+| `!`      | Next diagnostic                                  |
+| `\|`     | Column downwards                                 |
+| `.`      | Emoji or Nerd Font glyph                         |

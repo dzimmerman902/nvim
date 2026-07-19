@@ -1,33 +1,50 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = function(_, keys)
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			},
+		},
+		config = function()
+			local telescope = require("telescope")
+			telescope.setup({
+				extensions = {
+					fzf = {
+						fuzzy = true,
+						override_generic_sorter = true,
+						override_file_sorter = true,
+						case_mode = "smart_case",
+					},
+				},
+			})
+			telescope.load_extension("fzf")
+		end,
+		keys = function()
 			local builtin = require("telescope.builtin")
 
 			return {
-				{ "<leader>sH", builtin.help_tags, desc = "[S]earch [H]elp", mode = "n" },
-				{ "<leader>sk", builtin.keymaps, desc = "[S]earch [K]eymaps", mode = "n" },
-				{ "<leader>sf", builtin.find_files, desc = "[S]earch [F]iles", mode = "n" },
+				{ "<leader>sH", builtin.help_tags, desc = "Search help tags" },
+				{ "<leader>sk", builtin.keymaps, desc = "Search keymaps" },
+				{ "<leader>sf", builtin.find_files, desc = "Search files" },
 				{
 					"<leader>sF",
 					function()
 						builtin.find_files({ hidden = true, no_ignore = true })
 					end,
-					desc = "[S]earch [F]iles (all/hidden)",
-					mode = "n",
+					desc = "Search files (all/hidden)",
 				},
-				{ "<leader>ss", builtin.builtin, desc = "[S]earch [S]elect Telescope", mode = "n" },
-				{ "<leader>sw", builtin.grep_string, desc = "[S]earch current [W]ord", mode = "n" },
-				{ "<leader>sg", builtin.live_grep, desc = "[S]earch by [G]rep", mode = "n" },
-					{ "<leader>sd", builtin.diagnostics, desc = "[S]earch [D]iagnostics", mode = "n" },
-				{ "<leader>sr", builtin.resume, desc = "[S]earch [R]esume", mode = "n" },
-				{ "<leader>s.", builtin.oldfiles, desc = '[S]earch Recent Files ("." for repeat)', mode = "n" },
-				{ "<leader><leader>", builtin.find_files, desc = "[ ] Find files in directory", mode = "n" },
-					{ "<leader>gs", builtin.git_status, desc = "[G]it [S]tatus (changed files)", mode = "n" },
+				{ "<leader>ss", builtin.builtin, desc = "Search telescope pickers" },
+				{ "<leader>sw", builtin.grep_string, desc = "Search current word" },
+				{ "<leader>sg", builtin.live_grep, desc = "Search by grep" },
+				{ "<leader>sd", builtin.diagnostics, desc = "Search diagnostics" },
+				{ "<leader>sr", builtin.resume, desc = "Search resume" },
+				{ "<leader>s.", builtin.oldfiles, desc = "Search recent files" },
+				{ "<leader><leader>", builtin.find_files, desc = "Find files" },
+				{ "<leader>gs", builtin.git_status, desc = "Git status" },
 			}
 		end,
-		config = function() end,
 	},
 }

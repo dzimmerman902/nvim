@@ -1,5 +1,32 @@
+local prettier_fts = {
+	"javascript",
+	"typescript",
+	"javascriptreact",
+	"typescriptreact",
+	"svelte",
+	"css",
+	"html",
+	"vue",
+	"json",
+	"yaml",
+	"markdown",
+	"graphql",
+	"liquid",
+}
+
+local formatters_by_ft = {
+	lua = { "stylua" },
+	python = { "isort", "black" },
+	terraform = { "terraform_fmt" },
+	sql = { "sqlfluff" },
+	xml = { "xmlformatter" },
+}
+
+for _, ft in ipairs(prettier_fts) do
+	formatters_by_ft[ft] = { "prettier" }
+end
+
 return {
-	-- Formatting
 	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -7,65 +34,31 @@ return {
 			{
 				"<leader>f",
 				function()
-					require("conform").format({
-						lsp_fallback = true,
+					local conform = require("conform")
+					local formatters = conform.list_formatters()
+					local available = vim.tbl_filter(function(f)
+						return f.available
+					end, formatters)
+
+					if #available == 0 then
+						vim.notify("No formatter available for filetype: " .. vim.bo.filetype, vim.log.levels.WARN)
+						return
+					end
+
+					conform.format({
+						lsp_format = "fallback",
 						async = false,
 						timeout_ms = 1000,
 					})
 				end,
 				mode = { "n", "v" },
-				desc = "Format file or range (in visual mode)",
+				desc = "Format file or range",
 			},
 		},
 		config = function()
-			local conform = require("conform")
-
-			conform.setup({
-				formatters_by_ft = {
-					javascript = { "prettier" },
-					typescript = { "prettier" },
-					javascriptreact = { "prettier" },
-					typescriptreact = { "prettier" },
-					svelte = { "prettier" },
-					css = { "prettier" },
-					html = { "prettier" },
-					vue = { "prettier" },
-					json = { "prettier" },
-					yaml = { "prettier" },
-					markdown = { "prettier" },
-					graphql = { "prettier" },
-					liquid = { "prettier" },
-					lua = { "stylua" },
-					python = { "isort", "black" },
-					terraform = { "terraform_fmt" },
-					sql = { "sqlfluff" },
-					swift = { "swift" },
-					xml = { "xmlformatter" },
-				},
-			})
-		end,
-	},
-
-	-- Mason tool installer
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-		},
-		event = "VeryLazy",
-		config = function()
-			require("mason-tool-installer").setup({
-				ensure_installed = {
-					"prettier", -- prettier formatter
-					"stylua", -- lua formatter
-					"isort", -- python formatter
-					"black", -- python formatter
-					"pylint", -- python linter
-					"eslint_d", -- js linter
-					"terraform_fmt", -- terraform formatter
-					"sql_formatter",
-				},
+			require("conform").setup({
+				notify_on_error = true,
+				formatters_by_ft = formatters_by_ft,
 			})
 		end,
 	},

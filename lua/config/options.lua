@@ -52,6 +52,15 @@ opt.swapfile = false
 opt.backup = false
 opt.writebackup = false
 
+-- Encoding
+opt.fileencoding = "utf-8"
+
+-- Prompt to save instead of erroring on :q with unsaved changes
+opt.confirm = true
+
+-- Allow cursor to move freely past end-of-line in visual block mode
+opt.virtualedit = "block"
+
 -- Shorter updatetime
 opt.updatetime = 300
 
@@ -60,6 +69,7 @@ opt.showmode = false
 
 -- Better completion experience
 opt.completeopt = "menu,menuone,noselect"
+opt.pumheight = 10
 
 -- Minimum number of screen lines to keep above and below the cursor
 opt.scrolloff = 8
@@ -73,9 +83,6 @@ opt.conceallevel = 1
 
 -- Global statusline
 opt.laststatus = 3
-
--- Show which line your cursor is on
-opt.ruler = true
 
 -- Minimal number of columns to use for the line number
 opt.numberwidth = 4
@@ -99,7 +106,9 @@ opt.wildmode = "longest:full,full"
 -- Don't auto commenting new lines
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
-	command = "set fo-=c fo-=r fo-=o",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+	end,
 })
 
 -- Highlight on yank
@@ -136,6 +145,12 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Disable unused providers to reduce warnings
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+-- Clear LSP log on startup if it exceeds 10MB
+local lsp_log = vim.fn.stdpath("state") .. "/lsp.log"
+if vim.fn.getfsize(lsp_log) > 10 * 1024 * 1024 then
+	vim.fn.writefile({}, lsp_log)
+end
 
 -- Thicker window separators
 opt.fillchars = {
