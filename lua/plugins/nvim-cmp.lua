@@ -77,7 +77,8 @@ return {
 					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
 					["<C-n>"] = cmp.mapping.select_next_item({ behavior = "select" }),
 					["<C-y>"] = cmp.mapping.confirm({ select = false }),
-					["<C-e>"] = cmp.mapping.complete(),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<Tab>"] = cmp.mapping(function(fallback)

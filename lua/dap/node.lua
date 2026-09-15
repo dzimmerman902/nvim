@@ -1,5 +1,5 @@
 local dap = require("dap")
-local js_debug_path = vim.fn.expand("~/.local/share/nvim/dap/vscode-js-debug/dist/src/dapDebugServer.js")
+local js_debug_path = vim.fn.expand("~/.local/share/nvim/dap/vscode-js-debug/src/dapDebugServer.js")
 
 dap.adapters["pwa-node"] = {
 	type = "server",
@@ -21,16 +21,26 @@ local config = {
 		name = "Launch file",
 		program = "${file}",
 		cwd = "${workspaceFolder}",
+		sourceMaps = true,
+		skipFiles = { "<node_internals>/**" },
+		resolveSourceMapLocations = {
+			"${workspaceFolder}/**",
+			"!**/node_modules/**",
+		},
 	},
 	{
 		type = "pwa-node",
 		request = "launch",
-		name = "Launch test",
-		program = "${workspaceFolder}/__tests__/index.js",
+		name = "Launch file (tsx)",
+		program = "${file}",
 		cwd = "${workspaceFolder}",
+		runtimeExecutable = "${workspaceFolder}/node_modules/.bin/tsx",
 		sourceMaps = true,
-		protocol = "inspector",
-		console = "integratedTerminal",
+		skipFiles = { "<node_internals>/**" },
+		resolveSourceMapLocations = {
+			"${workspaceFolder}/**",
+			"!**/node_modules/**",
+		},
 	},
 	{
 		type = "pwa-node",
@@ -38,6 +48,7 @@ local config = {
 		name = "Attach",
 		processId = require("dap.utils").pick_process,
 		cwd = "${workspaceFolder}",
+		sourceMaps = true,
 	},
 }
 
